@@ -6,6 +6,9 @@ public class ObjectMotionController : MonoBehaviour
 {
     private Rigidbody rigidbody;
 
+    public Vector3 velocity;
+    public Vector3 rotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +18,8 @@ public class ObjectMotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    }
-
-    void SetMotion(Vector3 velocity, Vector3 angularVelocity)
-    {
         rigidbody.velocity = velocity;
-        rigidbody.angularVelocity = angularVelocity;
+        rigidbody.angularVelocity = rotation;
     }
 
     void Lock()
