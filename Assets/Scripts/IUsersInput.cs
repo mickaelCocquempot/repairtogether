@@ -18,8 +18,8 @@ public class IUsersInput
         prefix = "P" + nActual + "_";
     }
 
-    public void act()
+    public void act(ObjectMotionController obj)
     {
-        action.action(prefix, null);
+        action.action(prefix, obj);
     }
 }

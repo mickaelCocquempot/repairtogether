@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     GameObject instance = null;
 
+    public ObjectMotionController obj;
+
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
     {
         actions.Add(new Actions.HorizontalAction());
         actions.Add(new Actions.VerticalAction());
+        actions.Add(new Actions.OrientationXAction());
+        actions.Add(new Actions.OrientationYAction());
         actions.Add(new Actions.CameraAction());
         for (int i = 0; i < usersN; ++i)
         {
@@ -92,7 +96,7 @@ public class GameManager : MonoBehaviour
                 user.triggerLRT = false;
             }
             if (user.action != null)
-                user.act();
+                user.act(obj);
         }
     }
 }
