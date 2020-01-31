@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (IUsersInput user in users)
         {
+            //Debug.Log("Trigger_LT " + Input.GetAxis(user.prefix + "Trigger_LT"));
+            Debug.Log(actions.IndexOf(user.action));
             if(Input.GetAxis(user.prefix + "Trigger_LT") > 0.5f)
             {
                 if(user.triggerLRT == false)
@@ -82,7 +84,8 @@ public class GameManager : MonoBehaviour
             {
                 user.triggerLRT = false;
             }
-            if(Input.GetAxis(user.prefix + "Trigger_RT") > 0.5f)
+            //Debug.Log("Trigger_RT " + Input.GetAxis(user.prefix + "Trigger_RT"));
+            if (Input.GetAxis(user.prefix + "Trigger_RT") > 0.5f)
             {
                 if (user.triggerLRT == false)
                 {

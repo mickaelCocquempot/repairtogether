@@ -8,6 +8,7 @@ namespace Actions
     {
         public override void action(string prefix, ObjectMotionController obj)
         {
+            Debug.Log("Horizontal " + Input.GetAxisRaw(prefix + "Horizontal"));
             obj.velocity.x = Input.GetAxisRaw(prefix + "Horizontal");
         }
     }
