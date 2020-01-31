@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IActions
 {
-    public virtual void action(string prefix, GameObject obj)
+    public virtual void action(string prefix, ObjectMotionController obj)
     {
 
     }
