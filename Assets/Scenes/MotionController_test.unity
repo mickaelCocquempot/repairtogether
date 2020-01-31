@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 109995533}
   - component: {fileID: 109995532}
   - component: {fileID: 109995531}
+  - component: {fileID: 109995536}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -285,6 +286,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &109995536
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109995530}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1994760746
 GameObject:
   m_ObjectHideFlags: 0
