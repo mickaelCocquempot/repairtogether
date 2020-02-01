@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour
     public void testLevel()
     {
         level = new LevelManager.Level1();
-        gameMode = new GameMode.GCollab();
-        gameMode.level = level;
+        gameMode = new GameMode.GCollab(level);
+        gameMode.start();
         actionChooser = new ActionChooser.RandomActions();
     }
 
