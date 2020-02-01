@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         level = new LevelManager.Level1();
         gameMode = new GameMode.GCollab();
         gameMode.level = level;
-        actionChooser = new ActionChooser.FreeActions();
+        actionChooser = new ActionChooser.RandomActions();
     }
 
     //Awake is always called before any Start functions
@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     private void inputActions()
     {
+        obj.velocity = Vector3.zero;
+        obj.rotation = Vector3.zero;
         foreach (IUsersInput user in users)
         {
             //Debug.Log("Trigger_LT " + Input.GetAxis(user.prefix + "Trigger_LT"));

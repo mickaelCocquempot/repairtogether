@@ -16,7 +16,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.x = input.GetHorizontal();
+            obj.velocity.x += input.GetHorizontal();
         }
     }
 
@@ -32,7 +32,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.y = -input.GetVertical();
+            obj.velocity.y += -input.GetVertical();
         }
     }
 
@@ -48,7 +48,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.z = -input.GetVertical();
+            obj.velocity.z += -input.GetVertical();
         }
     }
 
@@ -64,7 +64,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.rotation.x = input.GetVertical();
+            obj.rotation.x += input.GetVertical();
         }
     }
 
@@ -80,7 +80,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.rotation.y = input.GetVertical(); 
+            obj.rotation.y += input.GetVertical(); 
         }
     }
 
