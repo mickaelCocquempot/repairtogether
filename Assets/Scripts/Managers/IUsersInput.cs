@@ -13,10 +13,29 @@ public class IUsersInput
 
     public IActions action = null;
 
+    public Color color;
+
     public IUsersInput(){
         nUsers++;
         nActual = nUsers;
         prefix = "P" + nActual + "_";
+        switch (nActual)
+        {
+            case 1:
+                color = new Color(230f/255f, 49f / 255f, 46f / 255f);
+                break;
+            case 2:
+                color = new Color(55f / 255f, 86f / 255f, 163f / 255f);
+                break;
+            case 3:
+                color = new Color(222f / 255f, 139f / 255f, 6f / 255f);
+                break;
+            case 4:
+                color = new Color(12f / 255f, 147 / 255f, 56f / 255f);
+                break;
+            default:
+                color = new Color(12f / 255f, 147 / 255f, 56f / 255f);
+        }
     }
 
     public void act(ObjectMotionController obj, CameraMotionController objCam)

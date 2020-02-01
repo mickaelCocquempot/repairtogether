@@ -122,7 +122,7 @@ namespace GameMode
     public class GCollabStack : IGameMode
     {
         public int nbAction = 2;
-        public List<List<IActions>> nextActions;
+        public List<List<IActions>> nextActions = new List<List<IActions>>();
 
         public GCollabStack(LevelManager.ILevelManager level) : base(level)
         {
@@ -130,7 +130,12 @@ namespace GameMode
 
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
         {
-
+            foreach(IUsersInput user in users)
+            {
+                user.action = nextActions[user.nActual][0];
+                nextActions[user.nActual].RemoveAt(0);
+                nextActions[user.nActual].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
+            }
         }
         public override void changeAction(IUsersInput user, int d)
         {
