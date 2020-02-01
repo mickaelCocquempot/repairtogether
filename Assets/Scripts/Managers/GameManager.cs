@@ -17,12 +17,12 @@ public class GameManager : MonoBehaviour
 
     public int usersN = 1;
 
-    static GameManager instance = null;
+    public static GameManager instance = null;
 
     public ObjectMotionController obj;
     public CameraMotionController objCam;
 
-    private float time = 0f;
+    public float time = 0f;
 
     public bool gameRunning = true;
 
