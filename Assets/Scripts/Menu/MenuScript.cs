@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+	public GameObject playersNumber;
 	public GameObject newGame;
 	public GameObject options;
 	public GameObject credits;
@@ -21,6 +22,7 @@ public class MenuScript : MonoBehaviour
 	public int state = 0;
 	public float fade = -1.0f;
 	public float fadeTime = 0.5f;
+	public int players = 2;
 
 	public int currentSelection = 0;
 	public bool startGame = false;
@@ -44,7 +46,7 @@ public class MenuScript : MonoBehaviour
 			audioSource.GetComponent<AudioSource>().volume = 1.0f - (1.0f + this.fade);
 			if (this.fade > 0.0f)
 			{
-				SceneManager.LoadScene("gameWarning");
+				SceneManager.LoadScene("WorkPlace");
 			}
 			return;
 		}
@@ -63,7 +65,7 @@ public class MenuScript : MonoBehaviour
 		switch (this.state)
 		{
 			case 0:
-				if ((Input.GetAxis("Vertical") < 0.0f) && (waitChrono == 0.0f))
+				if ((Input.GetAxis("Vertical") < -0.1f) && (waitChrono == 0.0f))
 				{
 					UnselectText(GetElement(currentSelection));
 					currentSelection++;
@@ -71,7 +73,7 @@ public class MenuScript : MonoBehaviour
 					SelectText(GetElement(currentSelection));
 					waitChrono = waitTime;
 				}
-				if ((Input.GetAxis("Vertical") > 0.0f) && (waitChrono == 0.0f))
+				if ((Input.GetAxis("Vertical") > 0.1f) && (waitChrono == 0.0f))
 				{
 					UnselectText(GetElement(currentSelection));
 					currentSelection += 3;
@@ -79,7 +81,32 @@ public class MenuScript : MonoBehaviour
 					SelectText(GetElement(currentSelection));
 					waitChrono = waitTime;
 				}
-				if (Input.GetAxis("Vertical") == 0.0f)
+				if (Input.GetAxis("Vertical") == 0.1f)
+				{
+					waitChrono = 0.0f;
+				}
+
+				if ((Input.GetAxis("Horizontal") < -0.1f) && (waitChrono == 0.0f))
+				{
+					if(players > 2)
+					{
+						players--;
+						TextMesh textElement = playersNumber.GetComponent<TextMesh>();
+						textElement.text = "◄ " + players + "Players ►";
+						waitChrono = waitTime;
+					}
+				}
+				if ((Input.GetAxis("Horizontal") > 0.1f) && (waitChrono == 0.0f))
+				{
+					if (players < 4)
+					{
+						players++;
+						TextMesh textElement = playersNumber.GetComponent<TextMesh>();
+						textElement.text = "◄ " + players + "Players ►";
+						waitChrono = waitTime;
+					}
+				}
+				if (Input.GetAxis("Horizontal") == 0.1f)
 				{
 					waitChrono = 0.0f;
 				}
@@ -134,13 +161,13 @@ public class MenuScript : MonoBehaviour
 
 	void SelectText(GameObject element)
 	{
-		TextMeshProUGUI textElement = element.GetComponent<TextMeshProUGUI>();
-		textElement.text = "( " + textElement.text + " )";
+		TextMesh textElement = element.GetComponent<TextMesh>();
+		textElement.text = "> " + textElement.text + " <";
 	}
 
 	void UnselectText(GameObject element)
 	{
-		TextMeshProUGUI textElement = element.GetComponent<TextMeshProUGUI>();
+		TextMesh textElement = element.GetComponent<TextMesh>();
 		textElement.text = textElement.text.Substring(2, textElement.text.Length - 4);
 	}
 
