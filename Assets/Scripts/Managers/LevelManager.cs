@@ -13,11 +13,11 @@ namespace LevelManager
 
     public class Level1 : ILevelManager
     {
-        public Level1()
+        public Level1(IndicationScript ind)
         {
-            actionsCollab = new List<IActions>() { new Actions.HorizontalAngleAction(), new Actions.VerticalAngleAction(), new Actions.OrientationXAngleAction(), new Actions.OrientationYAngleAction(), new Actions.DepthAngleAction(), new Actions.CameraAction()};
-            actions2v2 = new List<IActions>() { new Actions.HorizontalAction(), new Actions.VerticalAction(), new Actions.OrientationXAction(), new Actions.OrientationYAction(), new Actions.CameraAction() };
-            actions3v1 = new List<IActions>() { new Actions.HorizontalAction(), new Actions.VerticalAction(), new Actions.OrientationXAction(), new Actions.OrientationYAction(), new Actions.CameraAction() };
+            actionsCollab = new List<IActions>() { new Actions.HorizontalAngleAction(ind), new Actions.VerticalAngleAction(ind), new Actions.OrientationXAngleAction(ind), new Actions.OrientationYAngleAction(ind), new Actions.DepthAngleAction(ind), new Actions.CameraAction(ind)};
+            actions2v2 = new List<IActions>() { new Actions.HorizontalAction(ind), new Actions.VerticalAction(ind), new Actions.OrientationXAction(ind), new Actions.OrientationYAction(ind), new Actions.CameraAction(ind) };
+            actions3v1 = new List<IActions>() { new Actions.HorizontalAction(ind), new Actions.VerticalAction(ind), new Actions.OrientationXAction(ind), new Actions.OrientationYAction(ind), new Actions.CameraAction(ind) };
         }
     }
 }

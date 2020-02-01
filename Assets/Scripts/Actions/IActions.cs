@@ -5,7 +5,9 @@ using UnityEngine;
 public class IActions
 {
     public string name = "";
-    public virtual void actionNull(ObjectMotionController obj)
+    protected IndicationScript indicationScript;
+    public IActions(IndicationScript indicationScript) { this.indicationScript = indicationScript; }
+    public virtual void actionNull(IUsersInput input, ObjectMotionController obj)
     {
 
     }

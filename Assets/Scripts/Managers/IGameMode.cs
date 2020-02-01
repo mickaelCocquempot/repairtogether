@@ -39,7 +39,7 @@ namespace GameMode
         {
             foreach (IUsersInput user in users)
             {
-                user.action.actionNull(obj);
+                user.action.actionNull(user, obj);
                 if (team1.Contains(user.nActual))
                 {
                     user.action = level.actions2v2[Random.Range(0, (level.actions2v2.Count))];
@@ -49,7 +49,8 @@ namespace GameMode
                     user.action = level.actions2v2[Random.Range(0, (level.actions2v2.Count))];
                 }
             }
-            eventCAll();
+            if(eventCAll != null)
+                eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
@@ -61,7 +62,8 @@ namespace GameMode
             {
                 user.action = level.actions2v2[GameManager.mod(level.actions2v2.IndexOf(user.action) + d, level.actions2v2.Count)];
             }
-            eventC(user);
+            if(eventC != null)
+                eventC(user);
         }
 
         public override void start()
@@ -81,7 +83,7 @@ namespace GameMode
         {
             foreach(IUsersInput user in users)
             {
-                user.action.actionNull(obj);
+                user.action.actionNull(user, obj);
                 if (user.nActual == saboter)
                 {
                     user.action = level.actions3v1[Random.Range(0, (level.actions3v1.Count))];
@@ -91,7 +93,8 @@ namespace GameMode
                     user.action = level.actionsCollab[Random.Range(0, (level.actions3v1.Count))];
                 }
             }
-            eventCAll();
+            if (eventCAll != null)
+                eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
@@ -103,7 +106,8 @@ namespace GameMode
             {
                 user.action = level.actionsCollab[GameManager.mod(level.actionsCollab.IndexOf(user.action) + d, level.actionsCollab.Count)];
             }
-            eventC(user);
+            if (eventC != null)
+                eventC(user);
         }
 
         public override void start()
@@ -121,15 +125,19 @@ namespace GameMode
         {
             foreach (IUsersInput user in users)
             {
-                user.action.actionNull(obj);
+                user.action.actionNull(user ,obj);
                 user.action = level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))];
             }
-            eventCAll();
+            if (eventCAll != null)
+            if(eventCAll != null)
+                eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
             user.action = level.actionsCollab[GameManager.mod(level.actionsCollab.IndexOf(user.action) + d, level.actionsCollab.Count)];
-            eventC(user);
+
+            if (eventC != null)
+                eventC(user);
         }
 
         public override void start()
@@ -155,14 +163,17 @@ namespace GameMode
                 nextActions[user.nActual-1].RemoveAt(0);
                 nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
             }
-            eventCAll();
+            if (eventCAll != null)
+                eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
             user.action = nextActions[user.nActual-1][0];
             nextActions[user.nActual-1].RemoveAt(0);
             nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
-            eventC(user);
+
+            if (eventC != null)
+                eventC(user);
         }
 
         public override void start()
