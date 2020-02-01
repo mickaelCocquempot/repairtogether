@@ -35,6 +35,7 @@ public class IUsersInput
                 break;
             default:
                 color = new Color(12f / 255f, 147 / 255f, 56f / 255f);
+                break;
         }
     }
 
