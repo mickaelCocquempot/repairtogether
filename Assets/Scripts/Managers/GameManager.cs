@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     private void inputActions()
     {
+        Debug.Log(Input.GetAxis("P1_Horizontal"));
         foreach (IUsersInput user in users)
         {
             Debug.Log(user.prefix + "  " + user.GetHorizontal() + "  " + user.GetVertical() + "  " + user.GetRT() + "  " + user.GetLT());
