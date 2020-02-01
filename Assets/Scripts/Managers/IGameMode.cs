@@ -13,6 +13,13 @@ namespace GameMode
         {
             this.level = level;
         }
+
+        public delegate void eventChangeAll();
+        public delegate void eventChange(IUsersInput user);
+
+        public eventChange eventC;
+        public eventChangeAll eventCAll;
+
         public abstract void start();
         public abstract void changeAction(List<IUsersInput> users, ObjectMotionController obj);
         public abstract void changeAction(IUsersInput user, int d);
@@ -42,6 +49,7 @@ namespace GameMode
                     user.action = level.actions2v2[Random.Range(0, (level.actions2v2.Count))];
                 }
             }
+            eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
@@ -53,6 +61,7 @@ namespace GameMode
             {
                 user.action = level.actions2v2[GameManager.mod(level.actions2v2.IndexOf(user.action) + d, level.actions2v2.Count)];
             }
+            eventC(user);
         }
 
         public override void start()
@@ -82,6 +91,7 @@ namespace GameMode
                     user.action = level.actionsCollab[Random.Range(0, (level.actions3v1.Count))];
                 }
             }
+            eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
@@ -93,6 +103,7 @@ namespace GameMode
             {
                 user.action = level.actionsCollab[GameManager.mod(level.actionsCollab.IndexOf(user.action) + d, level.actionsCollab.Count)];
             }
+            eventC(user);
         }
 
         public override void start()
@@ -113,10 +124,12 @@ namespace GameMode
                 user.action.actionNull(obj);
                 user.action = level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))];
             }
+            eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
             user.action = level.actionsCollab[GameManager.mod(level.actionsCollab.IndexOf(user.action) + d, level.actionsCollab.Count)];
+            eventC(user);
         }
 
         public override void start()
@@ -142,12 +155,14 @@ namespace GameMode
                 nextActions[user.nActual-1].RemoveAt(0);
                 nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
             }
+            eventCAll();
         }
         public override void changeAction(IUsersInput user, int d)
         {
             user.action = nextActions[user.nActual-1][0];
             nextActions[user.nActual-1].RemoveAt(0);
             nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
+            eventC(user);
         }
 
         public override void start()
