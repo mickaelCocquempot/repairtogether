@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
     public void testLevel()
     {
         level = new LevelManager.Level1();
-        gameMode = new GameMode.GCollab(level);
+        gameMode = new GameMode.GCollabStack(level);
         gameMode.start();
-        actionChooser = new ActionChooser.RandomActions();
+        actionChooser = new ActionChooser.FreeActions();
     }
 
     //Awake is always called before any Start functions
