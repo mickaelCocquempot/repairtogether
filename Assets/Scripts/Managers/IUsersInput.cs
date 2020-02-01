@@ -15,6 +15,8 @@ public class IUsersInput
 
     public Color color;
 
+    public float speed = 1f;
+
     public IUsersInput(){
         nUsers++;
         nActual = nUsers;
