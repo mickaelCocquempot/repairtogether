@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public ObjectMotionController obj;
     public CameraMotionController objCam;
+    public IndicationScript indicationScript;
     public Transform CameraWorkBench;
     public Transform MainCamera;
 
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void testLevel()
     {
-        level = new LevelManager.Level1();
+        level = new LevelManager.Level1(indicationScript);
 
         switch (mode)
         {
@@ -124,10 +125,10 @@ public class GameManager : MonoBehaviour
         obj.rotation = Vector3.zero;
         foreach (IUsersInput user in users)
         {
-            Debug.Log(user.prefix + "  " + user.GetHorizontal() + "  " + user.GetVertical() + "  " + user.GetRT() + "  " + user.GetLT());
+//            Debug.Log(user.prefix + "  " + user.GetHorizontal() + "  " + user.GetVertical() + "  " + user.GetRT() + "  " + user.GetLT());
             if (user.GetLT() > 0.5f && user.triggerLT == false)
             {
-                user.action.actionNull(obj);
+                user.action.actionNull(user, obj);
                 actionChooser.chooseAction(user, 1, gameMode);
                 user.triggerLT = true;
             }
@@ -138,7 +139,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Trigger_RT " + Input.GetAxis(user.prefix + "Trigger_RT"));
             if (user.GetRT() > 0.5f && user.triggerRT == false)
             {
-                user.action.actionNull(obj);
+                user.action.actionNull(user, obj);
                 actionChooser.chooseAction(user, -1, gameMode);
                 user.triggerRT = true;
             }
@@ -166,7 +167,7 @@ public class GameManager : MonoBehaviour
                 gameFinished = true;
                 foreach (IUsersInput user in users)
                 {
-                    user.action.actionNull(obj);
+                    user.action.actionNull(user, obj);
                     user.action = null;
                 }
             }

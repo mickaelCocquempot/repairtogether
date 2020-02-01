@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeepRotation0 : MonoBehaviour
+public class KeepPosition0 : MonoBehaviour
 {
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class KeepRotation0 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.identity;
+        transform.position = target.position;
     }
 }

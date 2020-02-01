@@ -48,6 +48,7 @@ public class MenuScript : MonoBehaviour
 			audioSource.GetComponent<AudioSource>().volume = 1.0f - (1.0f + this.fade);
 			if (this.fade > 0.0f)
 			{
+				GameManager.instance.usersN = players;
 				SceneManager.LoadScene("WorkPlace");
 			}
 			return;
