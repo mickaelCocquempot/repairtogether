@@ -30,7 +30,7 @@ namespace ActionChooser
         }
         public override void chooseAction(float time, List<IUsersInput> users, GameMode.IGameMode gameMode, ObjectMotionController obj)
         {
-            if(time%2f < 0.5f)
+            if(time%5f < 0.5f)
             {
                 gameMode.changeAction(users, obj);
             }
