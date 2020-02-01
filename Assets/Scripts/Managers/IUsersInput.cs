@@ -7,8 +7,9 @@ public class IUsersInput
     public static int nUsers = 0;
     public string prefix = "";
 
-    private int nActual = 0;
-    public bool triggerLRT = false;
+    public int nActual = 0;
+    public bool triggerLT = false;
+    public bool triggerRT = false;
 
     public IActions action = null;
 
@@ -18,8 +19,9 @@ public class IUsersInput
         prefix = "P" + nActual + "_";
     }
 
-    public void act(ObjectMotionController obj)
+    public void act(ObjectMotionController obj, CameraMotionController objCam)
     {
         action.action(prefix, obj);
+        action.actionCam(prefix, objCam);
     }
 }
