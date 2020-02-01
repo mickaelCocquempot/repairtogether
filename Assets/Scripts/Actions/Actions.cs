@@ -36,6 +36,22 @@ namespace Actions
         }
     }
 
+    public class DepthAction : IActions
+    {
+        public DepthAction()
+        {
+            name = "Depth";
+        }
+        public override void actionNull(ObjectMotionController obj)
+        {
+            obj.velocity.z = 0;
+        }
+        public override void action(string prefix, ObjectMotionController obj)
+        {
+            obj.velocity.z = -Input.GetAxis(prefix + "Vertical");
+        }
+    }
+
     public class OrientationXAction : IActions
     {
         public OrientationXAction()

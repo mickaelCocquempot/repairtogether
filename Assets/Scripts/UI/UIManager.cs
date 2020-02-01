@@ -69,9 +69,12 @@ public class UIManager : MonoBehaviour
             mCounterDone = true;
             Counter.SetActive(false);
             OpaqueScreen.SetActive(false);
-            
-            ShowPlayerUI();
+
+            TimerScore.SetActive(true);
+            for (int i = 0; i < mNbPlayer; ++i)
+                mListPlayer[i].SetActive(true);
         }
+        ShowPlayerUI();
 
         TimerScore.GetComponent<Text>().text = GameManager.instance.time.ToString("F2");
     }
@@ -82,9 +85,7 @@ public class UIManager : MonoBehaviour
         {
             int lIndice = i;
             lIndice++;
-            mListPlayer[i].SetActive(true);
             mListPlayer[i].GetComponent<Text>().text = "Player" + lIndice + " " + GameManager.instance.users[i].action.name;
         }
-        TimerScore.SetActive(true);
     }
 }

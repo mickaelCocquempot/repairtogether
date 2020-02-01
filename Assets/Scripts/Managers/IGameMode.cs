@@ -81,7 +81,7 @@ namespace GameMode
             foreach (IUsersInput user in users)
             {
                 user.action.actionNull(obj);
-                user.action = level.actionsCollab[Random.Range(0, (level.actions3v1.Count))];
+                user.action = level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))];
             }
         }
         public override void changeAction(IUsersInput user, int d)
