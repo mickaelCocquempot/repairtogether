@@ -19,7 +19,6 @@ public class CameraMotionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mCenter = CenterGameOject.transform.position;
         Speed = 30F;
         radius = 2F;
     }
@@ -27,10 +26,12 @@ public class CameraMotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mCenter = CenterGameOject.transform.position;
+        transform.LookAt(CenterGameOject.transform);
 
         //Test
-//        Debug.Log(Vector3.Distance(transform.position, CenterGameOject.transform.position));
-        
+        //        Debug.Log(Vector3.Distance(transform.position, CenterGameOject.transform.position));
+
         if (/*Vector3.Distance(transform.position, CenterGameOject.transform.position) > radius &&*/ Input.mouseScrollDelta.y != 0)
         {
             if(Input.mouseScrollDelta.y == 1)
@@ -60,41 +61,50 @@ public class CameraMotionController : MonoBehaviour
     public void MoveLeft()
     {
         transform.RotateAround(mCenter, CenterGameOject.transform.up, Speed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveLeft(float iSpeed)
     {
+
         transform.RotateAround(mCenter, CenterGameOject.transform.up, Speed * iSpeed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveRight()
     {
         transform.RotateAround(mCenter, -CenterGameOject.transform.up, Speed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveRight(float iSpeed)
     {
         transform.RotateAround(mCenter, -CenterGameOject.transform.up, Speed * iSpeed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveUp()
     {
         transform.RotateAround(mCenter, transform.right, Speed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveUp(float iSpeed)
     {
         transform.RotateAround(mCenter, transform.right, Speed* iSpeed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveDown()
     {
         transform.RotateAround(mCenter, -transform.right, Speed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
     public void MoveDown(float iSpeed)
     {
         transform.RotateAround(mCenter, -transform.right, Speed * iSpeed * Time.deltaTime);
+        transform.LookAt(CenterGameOject.transform);
     }
 
 
