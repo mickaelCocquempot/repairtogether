@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace GameMode
 {
+    public enum GAMEMODE { G2V2, G3V1, G4COLLAB, G4COLLABSTACK};
     public abstract class IGameMode
     {
+        public GAMEMODE MODE;
         public LevelManager.ILevelManager level = null;
         public IGameMode(LevelManager.ILevelManager level)
         {
@@ -23,6 +25,7 @@ namespace GameMode
 
         public G2V2(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G2V2;
         }
 
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
@@ -63,6 +66,7 @@ namespace GameMode
 
         public G3V1(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G3V1;
         }
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
         {
@@ -100,6 +104,7 @@ namespace GameMode
     {
         public GCollab(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G4COLLAB;
         }
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
         {
@@ -126,6 +131,7 @@ namespace GameMode
 
         public GCollabStack(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G4COLLABSTACK;
         }
 
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
