@@ -8,8 +8,8 @@ namespace Actions
     {
         public override void action(string prefix, ObjectMotionController obj)
         {
-            Debug.Log("Horizontal " + Input.GetAxisRaw(prefix + "Horizontal"));
-            obj.velocity.x = Input.GetAxisRaw(prefix + "Horizontal");
+            Debug.Log("Horizontal");
+            obj.velocity.x = Input.GetAxis(prefix + "Horizontal");
         }
     }
 
@@ -17,7 +17,8 @@ namespace Actions
     {
         public override void action(string prefix, ObjectMotionController obj)
         {
-            obj.velocity.y = Input.GetAxisRaw(prefix + "Vertical");
+            Debug.Log("Vert");
+            obj.velocity.y = -Input.GetAxis(prefix + "Vertical");
         }
     }
 
@@ -25,7 +26,8 @@ namespace Actions
     {
         public override void action(string prefix, ObjectMotionController obj)
         {
-            obj.rotation.x = Input.GetAxisRaw(prefix + "Horizontal");
+            Debug.Log("OrientationX");
+            obj.rotation.x = Input.GetAxis(prefix + "Vertical");
         }
     }
 
@@ -33,7 +35,8 @@ namespace Actions
     {
         public override void action(string prefix, ObjectMotionController obj)
         {
-            obj.rotation.y = Input.GetAxisRaw(prefix + "Vertical");
+            Debug.Log("OrientationY");
+            obj.rotation.y = Input.GetAxis(prefix + "Horizontal"); 
         }
     }
 

@@ -72,31 +72,24 @@ public class GameManager : MonoBehaviour
         foreach (IUsersInput user in users)
         {
             //Debug.Log("Trigger_LT " + Input.GetAxis(user.prefix + "Trigger_LT"));
-            Debug.Log(actions.IndexOf(user.action));
-            if(Input.GetAxis(user.prefix + "Trigger_LT") > 0.5f)
+            if (Input.GetAxis(user.prefix + "Trigger_LT") > 0.5f && user.triggerLT == false)
             {
-                if(user.triggerLRT == false)
-                {
-                    user.action = actions[mod(actions.IndexOf(user.action) + 1, actions.Count)];
-                    user.triggerLRT = true;
-                }
-            }else if(Input.GetAxis(user.prefix + "Trigger_LT") < -0.5f)
+                user.action = actions[mod(actions.IndexOf(user.action) + 1, actions.Count)];
+                user.triggerLT = true;
+            }
+            else if (Input.GetAxis(user.prefix + "Trigger_LT") <= 0f)
             {
-                user.triggerLRT = false;
+                user.triggerLT = false;
             }
             //Debug.Log("Trigger_RT " + Input.GetAxis(user.prefix + "Trigger_RT"));
-            if (Input.GetAxis(user.prefix + "Trigger_RT") > 0.5f)
+            if (Input.GetAxis(user.prefix + "Trigger_RT") > 0.5f && user.triggerRT == false)
             {
-                if (user.triggerLRT == false)
-                {
-                    Debug.Log(mod(actions.IndexOf(user.action) - 1, actions.Count));
-                    user.action = actions[mod(actions.IndexOf(user.action) - 1, actions.Count)];
-                    user.triggerLRT = true;
-                }
+                user.action = actions[mod(actions.IndexOf(user.action) - 1, actions.Count)];
+                user.triggerRT = true;
             }
-            else if (Input.GetAxis(user.prefix + "Trigger_RT") < -0.5f)
+            else if (Input.GetAxis(user.prefix + "Trigger_RT") <= 0f)
             {
-                user.triggerLRT = false;
+                user.triggerRT = false;
             }
             if (user.action != null)
                 user.act(obj);

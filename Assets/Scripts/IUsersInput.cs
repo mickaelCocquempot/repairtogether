@@ -8,7 +8,8 @@ public class IUsersInput
     public string prefix = "";
 
     private int nActual = 0;
-    public bool triggerLRT = false;
+    public bool triggerLT = false;
+    public bool triggerRT = false;
 
     public IActions action = null;
 
