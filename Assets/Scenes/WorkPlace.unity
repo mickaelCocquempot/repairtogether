@@ -1818,9 +1818,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 2033114502}
-  usersN: 2
+  usersN: 4
   obj: {fileID: 1538616343}
-  objCam: {fileID: 0}
+  objCam: {fileID: 2053686190}
   CameraWorkBench: {fileID: 1723424065}
   MainCamera: {fileID: 1922717355}
   time: 0
