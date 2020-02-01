@@ -38,8 +38,10 @@ namespace Actions
 
     public class CameraAction : IActions
     {
-        public override void action(string prefix, ObjectMotionController obj)
+        public override void actionCam(string prefix, CameraMotionController obj)
         {
+            obj.MoveDown(Input.GetAxis(prefix + "Vertical"));
+            obj.MoveRight(Input.GetAxis(prefix + "Horizontal"));
         }
     }
 }

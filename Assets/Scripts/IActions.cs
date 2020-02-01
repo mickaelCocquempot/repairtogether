@@ -8,4 +8,8 @@ public class IActions
     {
 
     }
+    public virtual void actionCam(string prefix, CameraMotionController obj)
+    {
+
+    }
 }

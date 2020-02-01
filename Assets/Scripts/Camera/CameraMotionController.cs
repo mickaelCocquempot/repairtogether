@@ -13,6 +13,9 @@ public class CameraMotionController : MonoBehaviour
     private float radius;
 
     private Vector3 mCenter;
+
+    private float theta = 0f;
+    private float phi = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,42 +59,42 @@ public class CameraMotionController : MonoBehaviour
 
     public void MoveLeft()
     {
-        transform.RotateAround(mCenter, Vector3.up, Speed * Time.deltaTime);
+        transform.RotateAround(mCenter, CenterGameOject.transform.up, Speed * Time.deltaTime);
     }
 
     public void MoveLeft(float iSpeed)
     {
-        transform.RotateAround(mCenter, Vector3.up, iSpeed * Time.deltaTime);
+        transform.RotateAround(mCenter, CenterGameOject.transform.up, Speed * iSpeed * Time.deltaTime);
     }
 
     public void MoveRight()
     {
-        transform.RotateAround(mCenter, Vector3.down, Speed * Time.deltaTime);
+        transform.RotateAround(mCenter, -CenterGameOject.transform.up, Speed * Time.deltaTime);
     }
 
     public void MoveRight(float iSpeed)
     {
-        transform.RotateAround(mCenter, Vector3.down, iSpeed * Time.deltaTime);
+        transform.RotateAround(mCenter, -CenterGameOject.transform.up, Speed * iSpeed * Time.deltaTime);
     }
 
     public void MoveUp()
     {
-        transform.RotateAround(mCenter, Vector3.right, Speed * Time.deltaTime);
+        transform.RotateAround(mCenter, transform.right, Speed * Time.deltaTime);
     }
 
     public void MoveUp(float iSpeed)
     {
-        transform.RotateAround(mCenter, Vector3.right, iSpeed * Time.deltaTime);
+        transform.RotateAround(mCenter, transform.right, Speed* iSpeed * Time.deltaTime);
     }
 
     public void MoveDown()
     {
-        transform.RotateAround(mCenter, Vector3.left, Speed * Time.deltaTime);
+        transform.RotateAround(mCenter, -transform.right, Speed * Time.deltaTime);
     }
 
     public void MoveDown(float iSpeed)
     {
-        transform.RotateAround(mCenter, Vector3.left, iSpeed * Time.deltaTime);
+        transform.RotateAround(mCenter, -transform.right, Speed * iSpeed * Time.deltaTime);
     }
 
 

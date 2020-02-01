@@ -19,8 +19,9 @@ public class IUsersInput
         prefix = "P" + nActual + "_";
     }
 
-    public void act(ObjectMotionController obj)
+    public void act(ObjectMotionController obj, CameraMotionController objCam)
     {
         action.action(prefix, obj);
+        action.actionCam(prefix, objCam);
     }
 }

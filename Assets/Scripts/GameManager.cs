@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     GameObject instance = null;
 
     public ObjectMotionController obj;
+    public CameraMotionController objCam;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -23,7 +24,6 @@ public class GameManager : MonoBehaviour
             instance = this.gameObject;
             initSingleton();
         }
-
 
         //If instance already exists and it's not this:
         else if (instance != this.gameObject)
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
                 user.triggerRT = false;
             }
             if (user.action != null)
-                user.act(obj);
+                user.act(obj, objCam);
         }
     }
 }
