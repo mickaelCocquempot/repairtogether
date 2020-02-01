@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
         obj.rotation = Vector3.zero;
         foreach (IUsersInput user in users)
         {
-            //Debug.Log("Trigger_LT " + Input.GetAxis(user.prefix + "Trigger_LT"));
+            Debug.Log(user.prefix + "  " + user.GetHorizontal() + "  " + user.GetVertical() + "  " + user.GetRT() + "  " + user.GetLT());
             if (user.GetLT() > 0.5f && user.triggerLT == false)
             {
                 user.action.actionNull(obj);
