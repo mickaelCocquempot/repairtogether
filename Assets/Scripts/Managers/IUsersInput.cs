@@ -24,4 +24,38 @@ public class IUsersInput
         action.action(prefix, obj);
         action.actionCam(prefix, objCam);
     }
+
+    public float GetX()
+    {
+        return Input.GetAxis(this.prefix + "Horizontal");
+    }
+
+    public float GetY()
+    {
+        return Input.GetAxis(this.prefix + "Vertical");
+    }
+
+    public float GetLT()
+    {
+        if (SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
+        {
+            return Input.GetAxis(this.prefix + "Trigger_LT_MAC");
+        }
+        else
+        {
+            return Input.GetAxis(this.prefix + "Trigger_LT_MS");
+        }
+    }
+
+    public float GetRT()
+    {
+        if(SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
+        {
+            return Input.GetAxis(this.prefix + "Trigger_RT_MAC");
+        }
+        else
+        {
+            return Input.GetAxis(this.prefix + "Trigger_RT_MS");
+        }
+    }
 }

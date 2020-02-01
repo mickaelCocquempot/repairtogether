@@ -74,24 +74,24 @@ public class GameManager : MonoBehaviour
         foreach (IUsersInput user in users)
         {
             //Debug.Log("Trigger_LT " + Input.GetAxis(user.prefix + "Trigger_LT"));
-            if (Input.GetAxis(user.prefix + "Trigger_LT") > 0.5f && user.triggerLT == false)
+            if (user.GetLT() > 0.5f && user.triggerLT == false)
             {
                 user.action.actionNull(obj);
                 actionChooser.chooseAction(user, 1, gameMode);
                 user.triggerLT = true;
             }
-            else if (Input.GetAxis(user.prefix + "Trigger_LT") <= 0f)
+            else if (user.GetLT() <= 0f)
             {
                 user.triggerLT = false;
             }
             //Debug.Log("Trigger_RT " + Input.GetAxis(user.prefix + "Trigger_RT"));
-            if (Input.GetAxis(user.prefix + "Trigger_RT") > 0.5f && user.triggerRT == false)
+            if (user.GetRT() > 0.5f && user.triggerRT == false)
             {
                 user.action.actionNull(obj);
                 actionChooser.chooseAction(user, -1, gameMode);
                 user.triggerRT = true;
             }
-            else if (Input.GetAxis(user.prefix + "Trigger_RT") <= 0f)
+            else if (user.GetRT() <= 0f)
             {
                 user.triggerRT = false;
             }
