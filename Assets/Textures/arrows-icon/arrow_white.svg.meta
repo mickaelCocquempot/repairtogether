@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7d15e907c75a04fb18f5284943670551
+guid: 079ed7f4962cf214a9450466c8155878
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: gameObject/arrow.horizontal
-    400000: gameObject/arrow.horizontal/Transform
-    21200000: gameObject/arrow.horizontal/SpriteRenderer
+    100000: gameObject/arrow_white
+    400000: gameObject/arrow_white/Transform
+    21200000: gameObject/arrow_white/SpriteRenderer
     21300000: sprite
     100100000: gameObject
   externalObjects: {}
@@ -52,5 +52,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 0437a11971b9fd245a5fe3eb5f7a48d5
+      spriteID: 2930672447d68a549b540884d5df1915
     PhysicsOutlines: []

@@ -9,13 +9,15 @@ public class MenuScript : MonoBehaviour
 {
 	public GameObject playersNumber;
 	public GameObject newGame;
-	public GameObject options;
+	public GameObject rules;
+	public GameObject controls;
 	public GameObject credits;
 	public GameObject quit;
 
 	public GameObject menuGroup;
 	public GameObject creditGroup;
 	public GameObject controlsGroup;
+	public GameObject rulesGroup;
 	public GameObject blackScreen;
 	public GameObject audioSource;
 
@@ -51,8 +53,6 @@ public class MenuScript : MonoBehaviour
 			return;
 		}
 
-		updateFade(this.state);
-
 		if (waitChrono > 0.0f)
 		{
 			waitChrono -= Time.deltaTime;
@@ -69,15 +69,15 @@ public class MenuScript : MonoBehaviour
 				{
 					UnselectText(GetElement(currentSelection));
 					currentSelection++;
-					currentSelection %= 4;
+					currentSelection %= 5;
 					SelectText(GetElement(currentSelection));
 					waitChrono = waitTime;
 				}
 				if ((Input.GetAxis("Vertical") > 0.1f) && (waitChrono == 0.0f))
 				{
 					UnselectText(GetElement(currentSelection));
-					currentSelection += 3;
-					currentSelection %= 4;
+					currentSelection += 4;
+					currentSelection %= 5;
 					SelectText(GetElement(currentSelection));
 					waitChrono = waitTime;
 				}
@@ -119,12 +119,13 @@ public class MenuScript : MonoBehaviour
 							startGame = true;
 							break;
 						case 1:
+						case 2:
+						case 3:
+							menuGroup.SetActive(false);
+							SetSelectionActive(currentSelection, true);
 							this.state = 2;
 							break;
-						case 2:
-							this.state = 1;
-							break;
-						case 3:
+						case 4:
 							Application.Quit();
 							break;
 					}
@@ -134,6 +135,8 @@ public class MenuScript : MonoBehaviour
 			case 2:
 				if (Input.GetButtonDown("Fire1"))
 				{
+					menuGroup.SetActive(true);
+					SetSelectionActive(currentSelection, false);
 					this.state = 0;
 				}
 				break;
@@ -145,16 +148,38 @@ public class MenuScript : MonoBehaviour
 		switch (selection)
 		{
 			case 1:
-				return this.options;
+				return this.rules;
 				break;
 			case 2:
-				return this.credits;
+				return this.controls;
 				break;
 			case 3:
+				return this.credits;
+				break;
+			case 4:
 				return this.quit;
 				break;
 			default:
 				return this.newGame;
+				break;
+		}
+	}
+
+	void SetSelectionActive(int selection, bool active)
+	{
+		switch (selection)
+		{
+			case 1:
+				this.rulesGroup.SetActive(active);
+				break;
+			case 2:
+				this.controlsGroup.SetActive(active);
+				break;
+			case 3:
+				this.creditGroup.SetActive(active);
+				break;
+			default:
+				this.menuGroup.SetActive(active);
 				break;
 		}
 	}
@@ -169,33 +194,5 @@ public class MenuScript : MonoBehaviour
 	{
 		TextMesh textElement = element.GetComponent<TextMesh>();
 		textElement.text = textElement.text.Substring(2, textElement.text.Length - 4);
-	}
-
-	void updateFade(int state)
-	{
-		if (state != 0)
-		{
-			this.fade += Time.deltaTime / this.fadeTime;
-		}
-		else
-		{
-			this.fade -= Time.deltaTime / this.fadeTime;
-		}
-		this.fade = Mathf.Clamp(this.fade, -1.0f, 1.0f);
-
-		menuGroup.GetComponent<CanvasGroup>().alpha = Mathf.Abs(Mathf.Clamp(this.fade, -1.0f, 0.0f));
-		if (state == 0)
-		{
-			creditGroup.GetComponent<CanvasGroup>().alpha = Mathf.Min(Mathf.Abs(Mathf.Clamp(this.fade, 0.0f, 1.0f)), creditGroup.GetComponent<CanvasGroup>().alpha);
-			controlsGroup.GetComponent<CanvasGroup>().alpha = Mathf.Min(Mathf.Abs(Mathf.Clamp(this.fade, 0.0f, 1.0f)), controlsGroup.GetComponent<CanvasGroup>().alpha);
-		}
-		if (state == 1)
-		{
-			creditGroup.GetComponent<CanvasGroup>().alpha = Mathf.Abs(Mathf.Clamp(this.fade, 0.0f, 1.0f));
-		}
-		if (state == 2)
-		{
-			controlsGroup.GetComponent<CanvasGroup>().alpha = Mathf.Abs(Mathf.Clamp(this.fade, 0.0f, 1.0f));
-		}
 	}
 }
