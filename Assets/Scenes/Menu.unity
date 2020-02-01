@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f81933524702c0248bb56cda1fb6345c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f831318deacb345fbbea0f2fbfad6a97, type: 3}
   m_PreserveAspect: 0
 --- !u!222 &740434140
 CanvasRenderer:
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a2ae29bad080ae4681c035f2df21552, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d15e907c75a04fb18f5284943670551, type: 3}
   m_PreserveAspect: 0
 --- !u!222 &753806464
 CanvasRenderer:
@@ -1753,7 +1753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b51f067e9fbb424ab95e1ec25a40ad6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53f72275d67f949bf8a723666825b61e, type: 3}
   m_PreserveAspect: 0
 --- !u!222 &808769839
 CanvasRenderer:
@@ -2832,7 +2832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7d6aa79bf3ceb8e428ddb4d920f0982a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f36e1f3c5a234fd7a730c63e8a7018e, type: 3}
   m_PreserveAspect: 0
 --- !u!222 &1330341317
 CanvasRenderer:
@@ -3764,7 +3764,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732403302}
-  m_Text: 'Mickael Coquempot
+  m_Text: 'Mickael Cocquempot
 
     Ulysse Vautier
 
@@ -4067,7 +4067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c735a8003484ae044bdbf6251b521af9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f236007093fc7463fa2a8d4c748e3db6, type: 3}
   m_PreserveAspect: 0
 --- !u!222 &1787196945
 CanvasRenderer:
@@ -4309,7 +4309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2e17fc78a6719a24e886c2a824111c07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49b77b28a90544676ba9dd58039a195e, type: 3}
   m_PreserveAspect: 0
 --- !u!222 &1950602595
 CanvasRenderer:

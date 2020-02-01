@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: f236007093fc7463fa2a8d4c748e3db6
-DefaultImporter:
-=======
-guid: c735a8003484ae044bdbf6251b521af9
 ScriptedImporter:
   fileIDToRecycleName:
     100000: gameObject/arrow.depth
@@ -11,13 +7,10 @@ ScriptedImporter:
     21200000: gameObject/arrow.depth/SpriteRenderer
     21300000: sprite
     100100000: gameObject
->>>>>>> victor
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-<<<<<<< HEAD
-=======
   script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
   svgType: 0
   texturedSpriteMeshType: 0
@@ -59,6 +52,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 86d9b513cc5ff824395c7b3f9acee3ce
+      spriteID: 42757624c0ec1ed48a82361aa2840d05
     PhysicsOutlines: []
->>>>>>> victor

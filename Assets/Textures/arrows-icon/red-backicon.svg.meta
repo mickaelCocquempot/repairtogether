@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 2df7ec3537da043e899418d591165881
-DefaultImporter:
-=======
-guid: 33b21bb9cad5aa94dabfcea6f58706d7
 ScriptedImporter:
   fileIDToRecycleName:
     100000: gameObject/red-backicon
@@ -12,13 +8,10 @@ ScriptedImporter:
     21200000: gameObject/red-backicon/SpriteRenderer
     21300000: sprite
     100100000: gameObject
->>>>>>> victor
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-<<<<<<< HEAD
-=======
   script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
   svgType: 0
   texturedSpriteMeshType: 0
@@ -60,6 +53,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 94c5a50ec69df5b419db297661ff66af
+      spriteID: 645de335f5b32ec48b4543db0c851c0a
     PhysicsOutlines: []
->>>>>>> victor
