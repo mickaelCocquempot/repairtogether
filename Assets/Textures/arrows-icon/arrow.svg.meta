@@ -1,23 +1,16 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 49b77b28a90544676ba9dd58039a195e
-DefaultImporter:
-=======
-guid: 2e17fc78a6719a24e886c2a824111c07
+guid: 1bab65178b53dcc46bb35accad08c786
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: gameObject/cam.icon
-    400000: gameObject/cam.icon/Transform
-    21200000: gameObject/cam.icon/SpriteRenderer
+    100000: gameObject/arrow
+    400000: gameObject/arrow/Transform
+    21200000: gameObject/arrow/SpriteRenderer
     21300000: sprite
     100100000: gameObject
->>>>>>> victor
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-<<<<<<< HEAD
-=======
   script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
   svgType: 0
   texturedSpriteMeshType: 0
@@ -59,6 +52,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 723104a7c2f71514e945ad139a7fc79d
+      spriteID: 2770f99356dc23f41a8e3e944d1aa952
     PhysicsOutlines: []
->>>>>>> victor
