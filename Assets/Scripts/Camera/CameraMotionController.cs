@@ -29,7 +29,7 @@ public class CameraMotionController : MonoBehaviour
     {
 
         //Test
-        Debug.Log(Vector3.Distance(transform.position, CenterGameOject.transform.position));
+//        Debug.Log(Vector3.Distance(transform.position, CenterGameOject.transform.position));
         
         if (/*Vector3.Distance(transform.position, CenterGameOject.transform.position) > radius &&*/ Input.mouseScrollDelta.y != 0)
         {

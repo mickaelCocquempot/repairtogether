@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public List<IUsersInput> users = new List<IUsersInput>();
 
+    public Transform targetTransform;
+
     public int usersN = 1;
 
     public static GameManager instance = null;
@@ -23,15 +25,17 @@ public class GameManager : MonoBehaviour
     public CameraMotionController objCam;
 
     public float time = 0f;
+    private float timeF = 0f;
 
     public bool gameRunning = true;
+    public bool gameFinished = false;
 
     public void testLevel()
     {
         level = new LevelManager.Level1();
         gameMode = new GameMode.GCollab();
         gameMode.level = level;
-        actionChooser = new ActionChooser.RandomActions();
+        actionChooser = new ActionChooser.FreeActions();
     }
 
     //Awake is always called before any Start functions
@@ -99,12 +103,32 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         time = Time.timeSinceLevelLoad;
         if (gameRunning)
         {
             inputActions();
             actionChooser.chooseAction(time, users, gameMode, obj);
+
+            //Debug.Log(Vector3.Distance(targetTransform.position, obj.transform.position));
+            //Debug.Log(Quaternion.Angle(targetTransform.rotation, obj.transform.rotation));
+            if (Vector3.Distance(targetTransform.position, obj.transform.position) < 0.3f && Quaternion.Angle(targetTransform.rotation, obj.transform.rotation) < 5f)
+            {
+                gameRunning = false;
+                gameFinished = true;
+                foreach (IUsersInput user in users)
+                {
+                    user.action.actionNull(obj);
+                    user.action = null;
+                }
+            }
+        }
+        if (gameFinished)
+        {
+            timeF += Time.deltaTime;
+            obj.GetComponent<Collider>().enabled = false;
+            Debug.Log(timeF / 10.0f);
+            obj.transform.position = Vector3.Lerp(obj.transform.position, targetTransform.position, timeF/10.0f);
+            obj.transform.rotation = Quaternion.Lerp(obj.transform.rotation, targetTransform.rotation, timeF / 10.0f);
         }
     }
 }
