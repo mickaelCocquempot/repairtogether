@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,9 +11,18 @@ public class GameManager : MonoBehaviour
         return (x % m + m) % m;
     }
 
-    GameMode.IGameMode gameMode = null;
-    ActionChooser.IActionChooser actionChooser = null;
-    LevelManager.ILevelManager level = null;
+    [HideInInspector]
+    public GameMode.IGameMode gameMode = null;
+    [HideInInspector]
+    public ActionChooser.IActionChooser actionChooser = null;
+    [HideInInspector]
+    public LevelManager.ILevelManager level = null;
+    [HideInInspector]
+    public EndCondition.IEndCondition endCondition = null;
+
+    public GameMode.GAMEMODE mode = GameMode.GAMEMODE.G4COLLABSTACK;
+    public EndCondition.ENDCONDITION condition = EndCondition.ENDCONDITION.POSOR;
+    public ActionChooser.ACTIONCHOOSER chooser = ActionChooser.ACTIONCHOOSER.FREE;
 
     public List<IUsersInput> users = new List<IUsersInput>();
 
@@ -36,9 +46,45 @@ public class GameManager : MonoBehaviour
     public void testLevel()
     {
         level = new LevelManager.Level1();
-        gameMode = new GameMode.GCollabStack(level);
+
+        switch (mode)
+        {
+            case GameMode.GAMEMODE.G2V2:
+                gameMode = new GameMode.G2V2(level);
+                break;
+            case GameMode.GAMEMODE.G3V1:
+                gameMode = new GameMode.G3V1(level);
+                break;
+            case GameMode.GAMEMODE.G4COLLAB:
+                gameMode = new GameMode.GCollab(level);
+                break;
+            case GameMode.GAMEMODE.G4COLLABSTACK:
+                gameMode = new GameMode.GCollabStack(level);
+                break;
+            default:
+                break;
+        }
         gameMode.start();
-        actionChooser = new ActionChooser.FreeActions();
+
+        switch (chooser)
+        {
+            case ActionChooser.ACTIONCHOOSER.FREE:
+                actionChooser = new ActionChooser.FreeActions();
+                break;
+            case ActionChooser.ACTIONCHOOSER.RANDOM:
+                actionChooser = new ActionChooser.RandomActions();
+                break;
+        }
+
+        switch (condition)
+        {
+            case EndCondition.ENDCONDITION.LASER:
+                endCondition = new EndCondition.LaserFinish(GameObject.FindGameObjectsWithTag("LaserPath").ToList<GameObject>());
+                break;
+            case EndCondition.ENDCONDITION.POSOR:
+                endCondition = new EndCondition.PositionOrientationFinish(targetTransform);
+                break;
+        }
     }
 
     //Awake is always called before any Start functions
@@ -113,10 +159,8 @@ public class GameManager : MonoBehaviour
         {
             inputActions();
             actionChooser.chooseAction(time, users, gameMode, obj);
-
-            //Debug.Log(Vector3.Distance(targetTransform.position, obj.transform.position));
-            //Debug.Log(Quaternion.Angle(targetTransform.rotation, obj.transform.rotation));
-            if (Vector3.Distance(targetTransform.position, obj.transform.position) < 0.3f && Quaternion.Angle(targetTransform.rotation, obj.transform.rotation) < 5f)
+            endCondition.update(obj);
+            if (endCondition.isFinished(obj))
             {
                 gameRunning = false;
                 gameFinished = true;
@@ -130,10 +174,7 @@ public class GameManager : MonoBehaviour
         if (gameFinished)
         {
             timeF += Time.deltaTime;
-            obj.GetComponent<Collider>().enabled = false;
-            Debug.Log(timeF / 10.0f);
-            obj.transform.position = Vector3.Lerp(obj.transform.position, targetTransform.position, timeF/10.0f);
-            obj.transform.rotation = Quaternion.Lerp(obj.transform.rotation, targetTransform.rotation, timeF / 10.0f);
+            endCondition.end(obj, time);
         }
     }
 }
