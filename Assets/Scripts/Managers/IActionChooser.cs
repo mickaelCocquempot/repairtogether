@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ActionChooser
 {
+    public enum ACTIONCHOOSER { FREE, RANDOM}
     public abstract class IActionChooser
     {
         public abstract void chooseAction(IUsersInput user, int d, GameMode.IGameMode gameMode);

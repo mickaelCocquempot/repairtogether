@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace GameMode
 {
+    public enum GAMEMODE { G2V2, G3V1, G4COLLAB, G4COLLABSTACK};
     public abstract class IGameMode
     {
+        public GAMEMODE MODE;
         public LevelManager.ILevelManager level = null;
         public IGameMode(LevelManager.ILevelManager level)
         {
@@ -23,6 +25,7 @@ namespace GameMode
 
         public G2V2(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G2V2;
         }
 
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
@@ -63,6 +66,7 @@ namespace GameMode
 
         public G3V1(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G3V1;
         }
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
         {
@@ -100,6 +104,7 @@ namespace GameMode
     {
         public GCollab(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G4COLLAB;
         }
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
         {
@@ -126,22 +131,23 @@ namespace GameMode
 
         public GCollabStack(LevelManager.ILevelManager level) : base(level)
         {
+            MODE = GAMEMODE.G4COLLABSTACK;
         }
 
         public override void changeAction(List<IUsersInput> users, ObjectMotionController obj)
         {
             foreach(IUsersInput user in users)
             {
-                user.action = nextActions[user.nActual][0];
-                nextActions[user.nActual].RemoveAt(0);
-                nextActions[user.nActual].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
+                user.action = nextActions[user.nActual-1][0];
+                nextActions[user.nActual-1].RemoveAt(0);
+                nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
             }
         }
         public override void changeAction(IUsersInput user, int d)
         {
-            user.action = nextActions[user.nActual][0];
-            nextActions[user.nActual].RemoveAt(0);
-            nextActions[user.nActual].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
+            user.action = nextActions[user.nActual-1][0];
+            nextActions[user.nActual-1].RemoveAt(0);
+            nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
         }
 
         public override void start()
