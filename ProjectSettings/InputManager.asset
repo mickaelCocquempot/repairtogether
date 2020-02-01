@@ -339,7 +339,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 4
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1_Trigger_RT_MAC
@@ -355,7 +355,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
+    axis: 5
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1_Vertical
@@ -387,7 +387,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2_Trigger_LT_MS
@@ -403,8 +403,8 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 8
+    joyNum: 2
   - serializedVersion: 3
     m_Name: P2_Trigger_RT_MS
     descriptiveName: 
@@ -419,8 +419,8 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 9
+    joyNum: 2
   - serializedVersion: 3
     m_Name: P2_Trigger_LT_MAC
     descriptiveName: 
@@ -435,8 +435,8 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 4
+    joyNum: 2
   - serializedVersion: 3
     m_Name: P2_Trigger_RT_MAC
     descriptiveName: 
@@ -451,8 +451,8 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 5
+    joyNum: 2
   - serializedVersion: 3
     m_Name: P2_Vertical
     descriptiveName: 
@@ -468,7 +468,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 2
   - serializedVersion: 3
     m_Name: P2_Horizontal
     descriptiveName: 
@@ -483,5 +483,5 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
-    joyNum: 1
+    axis: 0
+    joyNum: 2
