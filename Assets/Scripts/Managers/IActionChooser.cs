@@ -25,16 +25,21 @@ namespace ActionChooser
 
     public class RandomActions : IActionChooser
     {
+        private bool changed = false;
+
         public override void chooseAction(IUsersInput user, int d, GameMode.IGameMode gameMode)
         {
 
         }
         public override void chooseAction(float time, List<IUsersInput> users, GameMode.IGameMode gameMode, ObjectMotionController obj)
         {
-            if(time%5f < 0.5f)
+            if(time%5f < 0.5f && changed == false)
             {
                 gameMode.changeAction(users, obj);
+                changed = true;
             }
+            if ((time - 1f) % 5f < 0.5f)
+                changed = false;
         }
     }
 }
