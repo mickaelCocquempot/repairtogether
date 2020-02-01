@@ -138,16 +138,16 @@ namespace GameMode
         {
             foreach(IUsersInput user in users)
             {
-                user.action = nextActions[user.nActual][0];
-                nextActions[user.nActual].RemoveAt(0);
-                nextActions[user.nActual].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
+                user.action = nextActions[user.nActual-1][0];
+                nextActions[user.nActual-1].RemoveAt(0);
+                nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
             }
         }
         public override void changeAction(IUsersInput user, int d)
         {
-            user.action = nextActions[user.nActual][0];
-            nextActions[user.nActual].RemoveAt(0);
-            nextActions[user.nActual].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
+            user.action = nextActions[user.nActual-1][0];
+            nextActions[user.nActual-1].RemoveAt(0);
+            nextActions[user.nActual-1].Add(level.actionsCollab[Random.Range(0, (level.actionsCollab.Count))]);
         }
 
         public override void start()

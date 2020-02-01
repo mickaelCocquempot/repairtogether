@@ -15,7 +15,7 @@ namespace LevelManager
     {
         public Level1()
         {
-            actionsCollab = new List<IActions>() { new Actions.HorizontalAction(), new Actions.VerticalAction(), new Actions.OrientationXAction(), new Actions.OrientationYAction(), new Actions.DepthAction(), new Actions.CameraAction()};
+            actionsCollab = new List<IActions>() { new Actions.HorizontalAngleAction(), new Actions.VerticalAngleAction(), new Actions.OrientationXAngleAction(), new Actions.OrientationYAngleAction(), new Actions.DepthAngleAction(), new Actions.CameraAction()};
             actions2v2 = new List<IActions>() { new Actions.HorizontalAction(), new Actions.VerticalAction(), new Actions.OrientationXAction(), new Actions.OrientationYAction(), new Actions.CameraAction() };
             actions3v1 = new List<IActions>() { new Actions.HorizontalAction(), new Actions.VerticalAction(), new Actions.OrientationXAction(), new Actions.OrientationYAction(), new Actions.CameraAction() };
         }

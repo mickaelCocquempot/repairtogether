@@ -16,7 +16,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.x += input.GetHorizontal();
+            obj.velocity.x += input.GetHorizontal() * input.speed;
         }
     }
 
@@ -32,7 +32,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.y += -input.GetVertical();
+            obj.velocity.y += -input.GetVertical() * input.speed;
         }
     }
 
@@ -48,7 +48,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.z += -input.GetVertical();
+            obj.velocity.z += -input.GetVertical() * input.speed;
         }
     }
 
@@ -64,7 +64,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.rotation.x += input.GetVertical();
+            obj.rotation.x += input.GetVertical() * input.speed;
         }
     }
 
@@ -80,7 +80,7 @@ namespace Actions
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.rotation.y += input.GetVertical(); 
+            obj.rotation.y += input.GetVertical() * input.speed; 
         }
     }
 
@@ -96,8 +96,100 @@ namespace Actions
         }
         public override void actionCam(IUsersInput input, CameraMotionController obj)
         {
-            obj.MoveDown(input.GetVertical());
-            obj.MoveRight(input.GetHorizontal());
+            obj.MoveDown(input.GetVertical()*input.speed);
+            obj.MoveRight(input.GetHorizontal() * input.speed);
+        }
+    }
+
+    public class AngleAction : IActions
+    {
+        protected List<float> angles = new List<float>();
+        public AngleAction()
+        {
+            angles.Add(0f);
+            angles.Add(0f);
+            angles.Add(0f);
+            angles.Add(0f);
+        }
+        public AngleAction(string n)
+        {
+            angles.Add(0f);
+            angles.Add(0f);
+            angles.Add(0f);
+            angles.Add(0f);
+            name = n;
+        }
+        protected float dv(IUsersInput input)
+        {
+            float dv = Mathf.Sin(angles[input.nActual - 1] - Mathf.Atan2(input.GetVertical(), input.GetHorizontal()))*input.speed;
+            angles[input.nActual - 1] = Mathf.Atan2(input.GetVertical(), input.GetHorizontal());
+            return dv;
+        }
+        public override void actionNull(ObjectMotionController obj)
+        {
+
+        }
+
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            float dv = Mathf.Sin(angles[input.nActual-1] - Mathf.Atan2(input.GetVertical(), input.GetHorizontal())) * input.speed;
+            angles[input.nActual-1] = Mathf.Atan2(input.GetVertical(), input.GetHorizontal());
+            obj.velocity.x += dv;
+        }
+    }
+
+    public class HorizontalAngleAction : AngleAction
+    {
+        public HorizontalAngleAction() : base("HorizontalAngle")
+        {
+        }
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            obj.velocity.x += dv(input);
+        }
+    }
+
+    public class VerticalAngleAction : AngleAction
+    {
+        public VerticalAngleAction() : base("VerticalAngle")
+        {
+        }
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            obj.velocity.y += dv(input);
+        }
+    }
+
+    public class OrientationXAngleAction : AngleAction
+    {
+        public OrientationXAngleAction() : base("OrientationXAngle")
+        {
+        }
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            obj.rotation.x += dv(input);
+        }
+    }
+
+    public class OrientationYAngleAction : AngleAction
+    {
+        public OrientationYAngleAction() : base("OrientationYAngle")
+        {
+        }
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            obj.rotation.y += dv(input);
+        }
+    }
+
+    public class DepthAngleAction : AngleAction
+    {
+        public DepthAngleAction() : base("DepthAngle")
+        {
+        }
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            obj.velocity.z += dv(input);
         }
     }
 }
