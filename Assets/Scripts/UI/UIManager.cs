@@ -23,10 +23,15 @@ public class UIManager : MonoBehaviour
     private GameObject TimerScore;
     private List<GameObject> mListPlayer = new List<GameObject>();
 
+    [SerializeField]
+    private List<Sprite> ListIcon = new List<Sprite>();
+
+    private List<string> mListAction = new List<string>();
+
     private int mNbPlayer;
 
     private bool mCounterDone = false;
-
+    
     [SerializeField]
     private float Timer;
 
@@ -51,7 +56,21 @@ public class UIManager : MonoBehaviour
         mListPlayer.Add(Player4);
         mNbPlayer = GameManager.instance.usersN;
 
-
+        if(GameManager.instance.gameMode.MODE == GameMode.GAMEMODE.G4COLLABSTACK)
+        {
+            for (int i = 0; i < GameManager.instance.usersN; ++i)
+            {
+                mListPlayer[i].GetComponentInChildren<Image>().color = GameManager.instance.users[i].color;
+                for (int j = 0; j < ((GameMode.GCollabStack)GameManager.instance.gameMode).nbAction; ++j)
+                {
+                    mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                    Debug.Log("Player " + i + " : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                }
+            }
+        }
+        
+           // ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions;
+        //((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions;
     }
 
     // Update is called once per frame
