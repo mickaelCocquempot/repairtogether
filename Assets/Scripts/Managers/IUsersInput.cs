@@ -7,7 +7,7 @@ public class IUsersInput
     public static int nUsers = 0;
     public string prefix = "";
 
-    private int nActual = 0;
+    public int nActual = 0;
     public bool triggerLT = false;
     public bool triggerRT = false;
 
