@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public ObjectMotionController obj;
     public CameraMotionController objCam;
+    public Transform CameraWorkBench;
+    public Transform MainCamera;
 
     public float time = 0f;
     private float timeF = 0f;

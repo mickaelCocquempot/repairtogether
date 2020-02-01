@@ -14,9 +14,9 @@ namespace Actions
         {
             obj.velocity.x = 0;
         }
-        public override void action(string prefix, ObjectMotionController obj)
+        public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.x = Input.GetAxis(prefix + "Horizontal");
+            obj.velocity.x = input.GetHorizontal();
         }
     }
 
@@ -30,9 +30,9 @@ namespace Actions
         {
             obj.velocity.y = 0;
         }
-        public override void action(string prefix, ObjectMotionController obj)
+        public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.y = -Input.GetAxis(prefix + "Vertical");
+            obj.velocity.y = -input.GetVertical();
         }
     }
 
@@ -46,9 +46,9 @@ namespace Actions
         {
             obj.velocity.z = 0;
         }
-        public override void action(string prefix, ObjectMotionController obj)
+        public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.velocity.z = -Input.GetAxis(prefix + "Vertical");
+            obj.velocity.z = -input.GetVertical();
         }
     }
 
@@ -62,9 +62,9 @@ namespace Actions
         {
             obj.rotation.x = 0;
         }
-        public override void action(string prefix, ObjectMotionController obj)
+        public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.rotation.x = Input.GetAxis(prefix + "Vertical");
+            obj.rotation.x = input.GetVertical();
         }
     }
 
@@ -78,9 +78,9 @@ namespace Actions
         {
             obj.rotation.y = 0;
         }
-        public override void action(string prefix, ObjectMotionController obj)
+        public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            obj.rotation.y = Input.GetAxis(prefix + "Horizontal"); 
+            obj.rotation.y = input.GetVertical(); 
         }
     }
 
@@ -94,10 +94,10 @@ namespace Actions
         {
 
         }
-        public override void actionCam(string prefix, CameraMotionController obj)
+        public override void actionCam(IUsersInput input, CameraMotionController obj)
         {
-            obj.MoveDown(Input.GetAxis(prefix + "Vertical"));
-            obj.MoveRight(Input.GetAxis(prefix + "Horizontal"));
+            obj.MoveDown(input.GetVertical());
+            obj.MoveRight(input.GetHorizontal());
         }
     }
 }

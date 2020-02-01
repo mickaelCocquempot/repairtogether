@@ -21,16 +21,16 @@ public class IUsersInput
 
     public void act(ObjectMotionController obj, CameraMotionController objCam)
     {
-        action.action(prefix, obj);
-        action.actionCam(prefix, objCam);
+        action.action(this, obj);
+        action.actionCam(this, objCam);
     }
 
-    public float GetX()
+    public float GetHorizontal()
     {
         return Input.GetAxis(this.prefix + "Horizontal");
     }
 
-    public float GetY()
+    public float GetVertical()
     {
         return Input.GetAxis(this.prefix + "Vertical");
     }

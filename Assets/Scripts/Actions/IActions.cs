@@ -9,11 +9,11 @@ public class IActions
     {
 
     }
-    public virtual void action(string prefix, ObjectMotionController obj)
+    public virtual void action(IUsersInput input, ObjectMotionController obj)
     {
 
     }
-    public virtual void actionCam(string prefix, CameraMotionController obj)
+    public virtual void actionCam(IUsersInput input, CameraMotionController obj)
     {
 
     }

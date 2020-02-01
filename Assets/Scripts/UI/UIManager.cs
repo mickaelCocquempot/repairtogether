@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private float Timer;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -58,30 +58,25 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (!mCounterDone)
-        {
             Timer -= Time.deltaTime;
-        }
-        else
-        {
-            Timer += Time.deltaTime;
-        }
+
         if (Timer > 0 && !mCounterDone)
         {
             Counter.GetComponent<Text>().text = "" + (int)Timer;
         }
-        else if(Timer < 0 && !mCounterDone)
+        else if (Timer < 0 && !mCounterDone)
         {
             mCounterDone = true;
             Counter.SetActive(false);
             OpaqueScreen.SetActive(false);
-            //TimerScore.SetActive(true);
-            //for (int i = 0; i < mNbPlayer; ++i)
-            //    mListPlayer[i].SetActive(true);
-            
-            ShowPlayerUI();
-        }
 
-        TimerScore.GetComponent<Text>().text = Timer.ToString("F2");
+            TimerScore.SetActive(true);
+            for (int i = 0; i < mNbPlayer; ++i)
+                mListPlayer[i].SetActive(true);
+        }
+        ShowPlayerUI();
+
+        TimerScore.GetComponent<Text>().text = GameManager.instance.time.ToString("F2");
     }
 
     private void ShowPlayerUI()
@@ -90,9 +85,7 @@ public class UIManager : MonoBehaviour
         {
             int lIndice = i;
             lIndice++;
-            mListPlayer[i].SetActive(true);
-            mListPlayer[i].GetComponent<Text>().text = "Player" + lIndice;
+            mListPlayer[i].GetComponent<Text>().text = "Player" + lIndice + " " + GameManager.instance.users[i].action.name;
         }
-        TimerScore.SetActive(true);
     }
 }
