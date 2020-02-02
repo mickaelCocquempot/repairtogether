@@ -106,7 +106,15 @@ public class MenuScript : MonoBehaviour
 					waitChrono = 0.0f;
 				}
 
-				if (Input.GetButtonDown("Fire1"))
+				bool fire1 = false;
+                for(int i = 0; i < 4; i++)
+                {
+					if (SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
+						fire1 |= Input.GetButtonDown("P" + (i+1) + "_X_MAC");
+					else
+						fire1 |= Input.GetButtonDown("P" + (i+1) + "_X_MS");
+				}
+				if (fire1)
 				{
 					switch (currentSelection)
 					{
