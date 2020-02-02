@@ -208,7 +208,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b823c9b82c75491aae6260eb918d858, type: 3}
   - {fileID: 21300000, guid: 331cc3302bda34ebdb8ad84c6d64a622, type: 3}
   - {fileID: 21300000, guid: a117c2ee554b94b7e9f1cd7aff89f4d4, type: 3}
-  - {fileID: 21300000, guid: 3415d6424703b43a285f1602194ac45e, type: 3}
+  - {fileID: 21300000, guid: 2b5fb603fff2349fea18afc564d858e7, type: 3}
   - {fileID: 21300000, guid: e0ebca54b8ce24156828f73453aabc6e, type: 3}
   PlayerOneBgOne: {fileID: 575867272728833861}
   PlayerOneBgTwo: {fileID: 575867272201220182}

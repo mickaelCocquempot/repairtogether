@@ -1661,6 +1661,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 575867271682925844, guid: f8e1381404df5d34fbcce9dd453177c5,
+        type: 3}
+      propertyPath: ListIcon.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b5fb603fff2349fea18afc564d858e7,
+        type: 3}
     - target: {fileID: 575867271682925867, guid: f8e1381404df5d34fbcce9dd453177c5,
         type: 3}
       propertyPath: m_Name
