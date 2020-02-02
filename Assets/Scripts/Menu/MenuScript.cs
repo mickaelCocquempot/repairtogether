@@ -57,6 +57,15 @@ public class MenuScript : MonoBehaviour
 			waitChrono = 0.0f;
 		}
 
+		bool fire1 = false;
+		for (int i = 0; i < 4; i++)
+		{
+			if (SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
+				fire1 |= Input.GetButtonDown("P" + (i + 1) + "_X_MAC");
+			else
+				fire1 |= Input.GetButtonDown("P" + (i + 1) + "_X_MS");
+		}
+
 		switch (this.state)
 		{
 			case 0:
@@ -106,14 +115,6 @@ public class MenuScript : MonoBehaviour
 					waitChrono = 0.0f;
 				}
 
-				bool fire1 = false;
-                for(int i = 0; i < 4; i++)
-                {
-					if (SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
-						fire1 |= Input.GetButtonDown("P" + (i+1) + "_X_MAC");
-					else
-						fire1 |= Input.GetButtonDown("P" + (i+1) + "_X_MS");
-				}
 				if (fire1)
 				{
 					switch (currentSelection)
@@ -136,7 +137,7 @@ public class MenuScript : MonoBehaviour
 				break;
 			case 1:
 			case 2:
-				if (Input.GetButtonDown("Fire1"))
+				if (fire1)
 				{
 					menuGroup.SetActive(true);
 					SetSelectionActive(currentSelection, false);

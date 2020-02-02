@@ -2648,7 +2648,7 @@ MonoBehaviour:
   condition: 0
   chooser: 1
   targetTransform: {fileID: 0}
-  usersN: 2
+  usersN: 4
   obj: {fileID: 0}
   objCam: {fileID: 0}
   indicationScript: {fileID: 0}
