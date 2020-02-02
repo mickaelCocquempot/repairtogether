@@ -195,6 +195,21 @@ public class GameManager : MonoBehaviour
             if (user.action != null)
                 user.act(obj, objCam);
         }
+
+        foreach(IActions action in level.actionsCollab)
+        {
+            bool inUsers = false;
+            foreach(IUsersInput user in users)
+            {
+                if (action == user.action)
+                    inUsers = true;
+            }
+            foreach (IUsersInput user in users)
+            {
+                if (!inUsers)
+                    action.actionNull(user, obj);
+            }
+        }
     }
 
     // Update is called once per frame
