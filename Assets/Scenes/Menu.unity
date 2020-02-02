@@ -2449,15 +2449,18 @@ MonoBehaviour:
   CameraWorkBench: {fileID: 0}
   MainCamera: {fileID: 0}
   uiManager: {fileID: 0}
+  canvasPrefab: {fileID: 0}
   timeStart: 0
   time: 0
   gameRunning: 0
   gameFinished: 0
   counter: 3
   levels:
+  - {fileID: 3749228240562096841, guid: 488770d52c7c845bdaeb5f3ab6a73387, type: 3}
   - {fileID: 6385105256194170445, guid: 2c6d223dee9844835a2bbc8be24717f7, type: 3}
   - {fileID: 1325791699754298017, guid: 28bbaef4fcc9f974984706167f373785, type: 3}
   Targets:
+  - {fileID: 4191111697735074667, guid: 8e254696b56734190bfb7a2686c33f8f, type: 3}
   - {fileID: 7487077102265076675, guid: f5480b4aa4b954e41bef46c2961eda3f, type: 3}
   - {fileID: 4458378584548275462, guid: ca46602531f6c43e8a83d5b33850cc1d, type: 3}
   levelN: 0
