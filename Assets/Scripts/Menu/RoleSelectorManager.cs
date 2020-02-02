@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoleSelectorManager : MonoBehaviour
 {
@@ -89,8 +90,24 @@ public class RoleSelectorManager : MonoBehaviour
                     }
                 }
             }
+
         }
 
+        int fullResult = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            int result = positions[i].getResult();
+            if (result > -1)
+            {
+                //Debug.Log("Got Result for player: " + result);
+                fullResult++;
+                GameManager.instance.users[result].speed = (positions[i].speed == PositionSelectorDisplay.Speed.Fast) ? 5 : 3;
+            }
+        }
+        if (fullResult == GameManager.instance.usersN)
+        {
+            SceneManager.LoadScene("WorkPlace");
+        }
 
     }
 }

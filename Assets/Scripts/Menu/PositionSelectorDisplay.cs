@@ -42,7 +42,6 @@ public class PositionSelectorDisplay : MonoBehaviour
     }
 
     private Player[] players;
-    private float deltaTime;
     private int result;
 
     // Start is called before the first frame update
@@ -60,7 +59,6 @@ public class PositionSelectorDisplay : MonoBehaviour
             new Player(false, 0),
             new Player(false, 0)
         };
-        deltaTime = 0;
         result = -1;
     }
 
@@ -131,6 +129,7 @@ public class PositionSelectorDisplay : MonoBehaviour
         {
             status.SetActive(true);
             status_icon.SetActive(false);
+            result = -1;
         }
         players[index].present = false;
     }
@@ -212,15 +211,8 @@ public class PositionSelectorDisplay : MonoBehaviour
         }
     }
 
-    int getResult()
+    public int getResult()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            if(players[i].level == 3)
-            {
-                return i;
-            }
-        }
-        return -1;
+        return result;
     }
 }
