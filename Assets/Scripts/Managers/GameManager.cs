@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public Transform CameraWorkBench;
     public Transform MainCamera;
     public UIManager uiManager;
+    public GameObject canvasPrefab;
 
     public float timeStart = 0f;
     public float time = 0f;
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> levels;
     public List<GameObject> Targets;
     public int levelN = 0;
+    private GameObject prefab;
+    private GameObject canvas;
 
     private bool sceneLoaded = false;
 
@@ -60,21 +63,39 @@ public class GameManager : MonoBehaviour
         if(scene.name == "WorkPlace")
         {
             objCam = Camera.main.GetComponent<CameraMotionController>();
+            canvas = GameObject.Instantiate(canvasPrefab);
             indicationScript = GameObject.FindGameObjectWithTag("Indication").GetComponent<IndicationScript>();
             uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
             uiManager.gameObject.SetActive(false);
             startGame();
         }
-        
+
+    }
+
+    public void killGame()
+    {
+        GameObject.Destroy(prefab);
+        GameObject.Destroy(canvas);
+        canvas = null;
+        uiManager.gameObject.SetActive(false);
+        prefab = null;
+        gameFinished = false;
+        gameRunning = false;
     }
 
     public void startGame()
     {
         gameRunning = true;
-        GameObject objInsta = GameObject.Instantiate(levels[levelN]);
+        prefab = GameObject.Instantiate(levels[levelN]);
+        if(canvas == null)
+            canvas = GameObject.Instantiate(canvasPrefab);
+        uiManager.gameObject.SetActive(false);
+        uiManager.gameObject.SetActive(true);
+        uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
         GameObject targetTransformG = GameObject.Instantiate(Targets[levelN]);
         targetTransform = targetTransformG.transform;
-        obj = GameObject.FindGameObjectWithTag("Object").GetComponent<ObjectMotionController>();
+        //obj = GameObject.FindGameObjectWithTag("Object").GetComponent<ObjectMotionController>();
+        obj = prefab.GetComponentInChildren<ObjectMotionController>();
         indicationScript.GetComponent<KeepPosition0>().target = obj.transform;
         objCam.CenterGameOject = obj.gameObject;
 
@@ -87,8 +108,10 @@ public class GameManager : MonoBehaviour
     public void testLevel()
     {
         level = new LevelManager.Level1(indicationScript);
+        gameMode = new GameMode.GCollabStack(level);
+        gameMode.start();
 
-        switch (mode)
+        /*switch (mode)
         {
             case GameMode.GAMEMODE.G2V2:
                 gameMode = new GameMode.G2V2(level);
@@ -123,6 +146,17 @@ public class GameManager : MonoBehaviour
                 endCondition = new EndCondition.LaserFinish(GameObject.FindGameObjectsWithTag("LaserPath").ToList<GameObject>());
                 break;
             case EndCondition.ENDCONDITION.POSOR:
+                endCondition = new EndCondition.PositionOrientationFinish(targetTransform);
+                break;
+        }*/
+        switch (levelN)
+        {
+            case 0:
+                actionChooser = new ActionChooser.FreeActions();
+                endCondition = new EndCondition.PositionFinish(targetTransform);
+                break;
+            case 1:
+                actionChooser = new ActionChooser.RandomActions();
                 endCondition = new EndCondition.PositionOrientationFinish(targetTransform);
                 break;
         }
@@ -235,6 +269,7 @@ public class GameManager : MonoBehaviour
                             user.action.actionNull(user, obj);
                             user.action = null;
                         }
+                        timeF = 0f;
                     }
                 }
             }
@@ -243,6 +278,12 @@ public class GameManager : MonoBehaviour
         {
             timeF += Time.deltaTime;
             endCondition.end(obj, time);
+            if(timeF > 5f)
+            {
+                levelN++;
+                killGame();
+                startGame();
+            }
         }
     }
 }

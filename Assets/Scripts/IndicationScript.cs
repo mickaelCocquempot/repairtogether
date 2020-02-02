@@ -41,9 +41,15 @@ public class IndicationScript : MonoBehaviour
     public void enableLeftRight(IUsersInput input, float v)
     {
         if (v > 0.02f)
+        {
             Left[input.nActual - 1].enabled = true;
+            Right[input.nActual - 1].enabled = false;
+        }
         else if(v < -0.02f)
+        {
             Right[input.nActual - 1].enabled = true;
+            Left[input.nActual - 1].enabled = false;
+        }
         else
         {
             Left[input.nActual - 1].enabled = false;
@@ -60,9 +66,15 @@ public class IndicationScript : MonoBehaviour
     public void enableUpDown(IUsersInput input, float v)
     {
         if (v > 0.02f)
+        {
             Up[input.nActual - 1].enabled = true;
+            Down[input.nActual - 1].enabled = false;
+        }
         else if (v < -0.02f)
+        {
+            Up[input.nActual - 1].enabled = false;
             Down[input.nActual - 1].enabled = true;
+        }
         else
         {
             Down[input.nActual - 1].enabled = false;
@@ -79,9 +91,15 @@ public class IndicationScript : MonoBehaviour
     public void enableFrontBack(IUsersInput input, float v)
     {
         if (v > 0.02f)
+        {
             Back[input.nActual - 1].enabled = true;
+            Front[input.nActual - 1].enabled = false;
+        }
         else if (v < -0.02f)
+        {
             Front[input.nActual - 1].enabled = true;
+            Back[input.nActual - 1].enabled = false;
+        }
         else
         {
             Front[input.nActual - 1].enabled = false;
@@ -99,7 +117,7 @@ public class IndicationScript : MonoBehaviour
     {
         if(Mathf.Abs(v) > 0.02f)
             OrX[input.nActual - 1].enabled = true;
-        else
+        if(Mathf.Abs(v) <= 0.02f)
             OrX[input.nActual - 1].enabled = false;
     }
 
@@ -112,7 +130,7 @@ public class IndicationScript : MonoBehaviour
     {
         if (Mathf.Abs(v) > 0.02f)
             OrY[input.nActual - 1].enabled = true;
-        else
+        if (Mathf.Abs(v) <= 0.02f)
             OrY[input.nActual - 1].enabled = false;
     }
 
@@ -125,7 +143,7 @@ public class IndicationScript : MonoBehaviour
     {
         if (Mathf.Abs(v) > 0.02f)
             OrZ[input.nActual - 1].enabled = true;
-        else
+        if (Mathf.Abs(v) <= 0.02f)
             OrZ[input.nActual - 1].enabled = false;
     }
 

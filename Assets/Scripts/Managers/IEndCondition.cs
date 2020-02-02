@@ -4,12 +4,36 @@ using UnityEngine;
 
 namespace EndCondition
 {
-    public enum ENDCONDITION { POSOR,LASER};
+    public enum ENDCONDITION { POSOR,POSFIN, LASER};
     public abstract class IEndCondition
     {
         public abstract void update(ObjectMotionController obj);
         public abstract bool isFinished(ObjectMotionController obj);
         public abstract void end(ObjectMotionController obj, float time);
+    }
+
+    public class PositionFinish : IEndCondition
+    {
+        public Transform targetTransform;
+        public PositionFinish(Transform target)
+        {
+            targetTransform = target;
+        }
+        public override void update(ObjectMotionController obj)
+        {
+
+        }
+        public override bool isFinished(ObjectMotionController obj)
+        {
+            return Vector3.Distance(targetTransform.position, obj.transform.position) < 0.3f;
+        }
+
+        public override void end(ObjectMotionController obj, float time)
+        {
+            obj.GetComponent<Collider>().enabled = false;
+            obj.transform.position = Vector3.Lerp(obj.transform.position, targetTransform.position, time / 10.0f);
+            obj.transform.rotation = Quaternion.Lerp(obj.transform.rotation, targetTransform.rotation, time / 10.0f);
+        }
     }
 
     public class PositionOrientationFinish : IEndCondition
