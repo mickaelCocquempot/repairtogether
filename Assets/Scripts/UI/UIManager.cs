@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     private List<GameObject> mListPlayer = new List<GameObject>();
 
     [SerializeField]
-    private List<GameObject> ListIcon = new List<GameObject>();
+    private List<Sprite> ListIcon = new List<Sprite>();
 
     private List<string> mListAction = new List<string>();
 
@@ -51,9 +51,14 @@ public class UIManager : MonoBehaviour
     private int mNbPlayer;
 
     private bool mCounterDone = false;
+
+    [SerializeField]
+    private List<GameObject> mListButton = new List<GameObject>();
     
     [SerializeField]
     private float Timer;
+
+    private Dictionary<string, Sprite> mDictionnaryIcon = new Dictionary<string, Sprite>();
 
     private void Awake()
     {
@@ -69,7 +74,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Dictionary<string, GameObject> mDictionnaryIcon = new Dictionary<string, GameObject>();
+        
         OpaqueScreen.SetActive(true);
         Counter.SetActive(true);
         Timer += 0.9F;
@@ -79,12 +84,12 @@ public class UIManager : MonoBehaviour
         mListPlayer.Add(Player4);
         mNbPlayer = GameManager.instance.usersN;
 
-        mDictionnaryIcon.Add("Horizontal", ListIcon[1]);
-        mDictionnaryIcon.Add("Vertical", ListIcon[4]);
-        mDictionnaryIcon.Add("OrientationY", ListIcon[3]);
-        mDictionnaryIcon.Add("OrientationX", ListIcon[2]);
+        mDictionnaryIcon.Add("HorizontalAngle", ListIcon[1]);
+        mDictionnaryIcon.Add("VerticalAngle", ListIcon[4]);
+        mDictionnaryIcon.Add("OrientationYAngle", ListIcon[3]);
+        mDictionnaryIcon.Add("OrientationXAngle", ListIcon[2]);
         mDictionnaryIcon.Add("Camera", ListIcon[5]);
-        mDictionnaryIcon.Add("Depth", ListIcon[0]);
+        mDictionnaryIcon.Add("DepthAngle", ListIcon[0]);
 
 
         for (int i = 0; i < GameManager.instance.usersN; ++i)
@@ -96,23 +101,82 @@ public class UIManager : MonoBehaviour
         {
             for (int i = 0; i < GameManager.instance.usersN; ++i)
             {
-                if(i == 0)
-
+                
                 mListPlayer[i].GetComponentInChildren<Image>().color = GameManager.instance.users[i].color;
                 Debug.Log(GameManager.instance.users[i].color.ToString());
-                for (int j = 0; j < ((GameMode.GCollabStack)GameManager.instance.gameMode).nbAction; ++j)
+                for (int j = 0; j < ((GameMode.GCollabStack)GameManager.instance.gameMode).nbAction; j++)
                 {
 
                     mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                    Debug.Log("lolololol : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
                     //Instantiate(mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name], mListPlayer[i].transform.position + new Vector3(100F, 0F, 0F), Quaternion.identity, mListPlayer[i].transform);
-                    if(i == 0)
+                    if (i == 0)
                     {
-                        PlayerOneBgOne.GetComponentInChildren<SpriteRenderer>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name].GetComponent<SpriteRenderer>().sprite;
-                        PlayerOneBgTwo.GetComponentInChildren<SpriteRenderer>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name].GetComponent<SpriteRenderer>().sprite;
-                        Debug.Log(mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name].GetComponent<SpriteRenderer>().sprite.ToString());
+                        if(j == 0)
+                        {
+                            PlayerOneBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        if(j == 1)
+                        {
+                            PlayerOneBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+
+                        mListAction.Clear();
                     }
-                    Debug.Log(mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name].ToString());
-                    //Debug.LogWarning("Player " + i + " : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                    else if (i == 1)
+                    {
+                        if (j == 0)
+                        {
+                            PlayerTwoBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        if (j == 1)
+                        {
+                            PlayerTwoBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        mListAction.Clear();
+                    }
+                    else if (i == 2)
+                    {
+                        if (j == 0)
+                        {
+                            PlayerThreeBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        if (j == 1)
+                        {
+                            PlayerThreeBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        mListAction.Clear();
+                    }
+                    else if (i == 3)
+                    {
+                        if (j == 0)
+                        {
+                            PlayerFourBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        if (j == 1)
+                        {
+                            PlayerFourBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                        }
+                        mListAction.Clear();
+                    }
+
+                    Debug.LogWarning("Player " + i + " : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
                 }
             }
         }
@@ -149,7 +213,77 @@ public class UIManager : MonoBehaviour
                 {
                     mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
                     Debug.Log(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
-                }
+
+                        mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                        Debug.Log("lolololol : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                        //Instantiate(mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name], mListPlayer[i].transform.position + new Vector3(100F, 0F, 0F), Quaternion.identity, mListPlayer[i].transform);
+                        if (i == 0)
+                        {
+                            if (j == 0)
+                            {
+                                PlayerOneBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            if (j == 1)
+                            {
+                                PlayerOneBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+
+                            mListAction.Clear();
+                        }
+                        else if (i == 1)
+                        {
+                            if (j == 0)
+                            {
+                                PlayerTwoBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            if (j == 1)
+                            {
+                                PlayerTwoBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            mListAction.Clear();
+                        }
+                        else if (i == 2)
+                        {
+                            if (j == 0)
+                            {
+                                PlayerThreeBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            if (j == 1)
+                            {
+                                PlayerThreeBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            mListAction.Clear();
+                        }
+                        else if (i == 3)
+                        {
+                            if (j == 0)
+                            {
+                                PlayerFourBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            if (j == 1)
+                            {
+                                PlayerFourBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            }
+                            mListAction.Clear();
+                        }
+                    }
+                    
             }
         }
 
@@ -165,4 +299,6 @@ public class UIManager : MonoBehaviour
             mListPlayer[i].GetComponent<Text>().text = "Player" + lIndice + " " + GameManager.instance.users[i].action.name;
         }
     }
+
+
 }
