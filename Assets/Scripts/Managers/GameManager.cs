@@ -165,7 +165,15 @@ public class GameManager : MonoBehaviour
                 break;
             case 1:
                 actionChooser = new ActionChooser.RandomActions();
+                endCondition = new EndCondition.PositionFinish(targetTransform);
+                break;
+            case 2:
+                actionChooser = new ActionChooser.RandomActions();
                 endCondition = new EndCondition.PositionOrientationFinish(targetTransform);
+                break;
+            case 3:
+                killGame();
+                SceneManager.LoadScene("Menu");
                 break;
         }
     }
