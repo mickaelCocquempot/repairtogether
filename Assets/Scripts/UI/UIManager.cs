@@ -48,12 +48,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject PlayerFourBgTwo;
 
+    [SerializeField]
+    private List<Sprite> ListButtonSprite = new List<Sprite>();
+
     private int mNbPlayer;
 
     private bool mCounterDone = false;
-
-    [SerializeField]
-    private List<GameObject> mListButton = new List<GameObject>();
     
     [SerializeField]
     public float Timer;
@@ -90,6 +90,8 @@ public class UIManager : MonoBehaviour
         mDictionnaryIcon.Add("OrientationXAngle", ListIcon[2]);
         mDictionnaryIcon.Add("Camera", ListIcon[5]);
         mDictionnaryIcon.Add("DepthAngle", ListIcon[0]);
+        mDictionnaryIcon.Add("OrientationZAngle", ListIcon[6]);
+
 
 
         for (int i = 0; i < GameManager.instance.usersN; ++i)
@@ -99,21 +101,25 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.instance.gameMode.MODE == GameMode.GAMEMODE.G4COLLABSTACK)
         {
+            Debug.Log("1");
             for (int i = 0; i < GameManager.instance.usersN; ++i)
             {
-                
+                Debug.Log("2");
                 mListPlayer[i].GetComponentInChildren<Image>().color = GameManager.instance.users[i].color;
-                Debug.Log(GameManager.instance.users[i].color.ToString());
+
+                //Debug.Log("COLOR : " + GameManager.instance.users[i].color.ToString());
                 for (int j = 0; j < ((GameMode.GCollabStack)GameManager.instance.gameMode).nbAction; j++)
                 {
-
+                    Debug.Log("3");
                     mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
-                    Debug.Log("lolololol : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                    //Debug.Log("lolololol : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
                     //Instantiate(mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name], mListPlayer[i].transform.position + new Vector3(100F, 0F, 0F), Quaternion.identity, mListPlayer[i].transform);
                     if (i == 0)
                     {
-                        if(j == 0)
+                        Debug.Log("4");
+                        if (j == 0)
                         {
+                            Debug.Log("5");
                             PlayerOneBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
@@ -132,12 +138,14 @@ public class UIManager : MonoBehaviour
                         if (j == 0)
                         {
                             PlayerTwoBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+
                             PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                         }
                         if (j == 1)
                         {
                             PlayerTwoBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+
                             PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                         }
@@ -148,12 +156,14 @@ public class UIManager : MonoBehaviour
                         if (j == 0)
                         {
                             PlayerThreeBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+
                             PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                         }
                         if (j == 1)
                         {
                             PlayerThreeBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+
                             PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                         }
@@ -164,19 +174,21 @@ public class UIManager : MonoBehaviour
                         if (j == 0)
                         {
                             PlayerFourBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+
                             PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                         }
                         if (j == 1)
                         {
                             PlayerFourBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+
                             PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                             PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                         }
                         mListAction.Clear();
                     }
 
-                    Debug.LogWarning("Player " + i + " : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                    //Debug.LogWarning("Player " + i + " : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
                 }
             }
         }
@@ -212,24 +224,24 @@ public class UIManager : MonoBehaviour
                 for (int j = 0; j < ((GameMode.GCollabStack)GameManager.instance.gameMode).nbAction; ++j)
                 {
                     mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
-                    Debug.Log(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                    //Debug.Log(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
 
                         mListAction.Add(((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
-                        Debug.Log("lolololol : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
+                        //Debug.Log("lolololol : " + ((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name);
                         //Instantiate(mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name], mListPlayer[i].transform.position + new Vector3(100F, 0F, 0F), Quaternion.identity, mListPlayer[i].transform);
                         if (i == 0)
                         {
                             if (j == 0)
                             {
-                                PlayerOneBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            // PlayerOneBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            // PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerOneBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             if (j == 1)
                             {
-                                PlayerOneBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
+                            // PlayerOneBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            // PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                            PlayerOneBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
 
                             mListAction.Clear();
@@ -238,14 +250,14 @@ public class UIManager : MonoBehaviour
                         {
                             if (j == 0)
                             {
-                                PlayerTwoBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerTwoBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                               // PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                                 PlayerTwoBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             if (j == 1)
                             {
-                                PlayerTwoBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerTwoBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                                 PlayerTwoBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             mListAction.Clear();
@@ -254,14 +266,14 @@ public class UIManager : MonoBehaviour
                         {
                             if (j == 0)
                             {
-                                PlayerThreeBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerThreeBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                                 PlayerThreeBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             if (j == 1)
                             {
-                                PlayerThreeBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerThreeBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                               // PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                                 PlayerThreeBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             mListAction.Clear();
@@ -270,14 +282,14 @@ public class UIManager : MonoBehaviour
                         {
                             if (j == 0)
                             {
-                                PlayerFourBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerFourBgOne.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                                 PlayerFourBgOne.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             if (j == 1)
                             {
-                                PlayerFourBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
-                                PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                                //PlayerFourBgTwo.GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
+                               // PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().color = new Color(1F, 1F, 1F, 1F);
                                 PlayerFourBgTwo.transform.GetChild(0).GetComponent<Image>().sprite = mDictionnaryIcon[((GameMode.GCollabStack)GameManager.instance.gameMode).nextActions[i][j].name];
                             }
                             mListAction.Clear();
@@ -300,5 +312,32 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void ColorBG(GameObject iGo, Color iColor)
+    {
+        //Debug.Log("COLOR BG : " + iColor.r);
+        //if (iColor.r > 0.9 && iColor.r <0.92)
+        //{
+        //    iGo.GetComponent<Image>().sprite = ListButtonSprite[0];
+        //    Debug.Log("COLOR BG :  " + ListButtonSprite[0].ToString() + "  gameobject : "  + iGo.ToString());
+        //}
+        //else if (iColor.b > 0.6 && iColor.b < 0.65)
+        //{
+        //    iGo.GetComponent<Image>().sprite = ListButtonSprite[1];
+        //    Debug.Log("COLOR BG :  " + ListButtonSprite[0].ToString() + "  gameobject : " + iGo.ToString());
+
+        //}
+        //else if (iColor.r > 0.85 && iColor.r < 0.88)
+        //{
+        //    iGo.GetComponent<Image>().sprite = ListButtonSprite[2];
+        //    Debug.Log("COLOR BG :  " + ListButtonSprite[0].ToString() + "  gameobject : " + iGo.ToString());
+
+        //}
+        //else if (iColor.g > 0.55 && iColor.g < 0.59)
+        //{
+        //    iGo.GetComponent<Image>().sprite = ListButtonSprite[3];
+        //    Debug.Log("COLOR BG :  " + ListButtonSprite[0].ToString() + "  gameobject : " + iGo.ToString());
+
+        //}
+    }
 
 }
