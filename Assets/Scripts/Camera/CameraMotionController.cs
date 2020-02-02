@@ -47,15 +47,15 @@ public class CameraMotionController : MonoBehaviour
 
     }
 
-    public void MoveDistanceFromObject()
+    public void MoveDistanceFromObject(int dir)
     {
-        if (/*Vector3.Distance(transform.position, CenterGameOject.transform.position) > radius &&*/ Input.mouseScrollDelta.y != 0)
-        {
-            if (Input.mouseScrollDelta.y == 1)
+        //if (/*Vector3.Distance(transform.position, CenterGameOject.transform.position) > radius &&*/ Input.mouseScrollDelta.y != 0)
+        //{
+            if (dir == 1)
                 transform.Translate(0, 0, 1F);
-            else if (Input.mouseScrollDelta.y == -1)
+            else if (dir == -1)
                 transform.Translate(0, 0, -1F);
-        }
+        //}
     }
 
     public void MoveLeft()

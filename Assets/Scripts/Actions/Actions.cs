@@ -117,6 +117,7 @@ namespace Actions
         }
         public override void actionCam(IUsersInput input, CameraMotionController obj)
         {
+            obj.MoveDistanceFromObject(input.GetButtonX() - input.GetButtonY());
             obj.MoveDown(input.GetVertical()*input.speed);
             obj.MoveRight(input.GetHorizontal() * input.speed);
         }

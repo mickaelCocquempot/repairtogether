@@ -17,7 +17,7 @@ public class IndicationScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < GameManager.instance.usersN; i++)
         {
             Left[i].color = GameManager.instance.users[i].color;
             Left[i].transform.parent.position = new Vector3(dist,0f,0f);

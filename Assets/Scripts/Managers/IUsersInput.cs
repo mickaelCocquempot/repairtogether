@@ -80,4 +80,28 @@ public class IUsersInput
             return Input.GetAxis(this.prefix + "Trigger_RT_MS");
         }
     }
+
+    public int GetButtonX()
+    {
+        if (SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
+        {
+            return Input.GetButtonDown(this.prefix + "X_MAC") ? 1 : 0;
+        }
+        else
+        {
+            return Input.GetButtonDown(this.prefix + "X_MS") ? 1 : 0;
+        }
+    }
+
+    public int GetButtonY()
+    {
+        if (SystemInfo.operatingSystemFamily == OperatingSystemFamily.MacOSX)
+        {
+            return Input.GetButtonDown(this.prefix + "Y_MAC") ? 1 : 0;
+        }
+        else
+        {
+            return Input.GetButtonDown(this.prefix + "Y_MS") ? 1 : 0;
+        }
+    }
 }
