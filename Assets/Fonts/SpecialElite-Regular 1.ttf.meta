@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ba412088e0ae38b4d874760b9d767046
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Special Elite
+  fontNames:
+  - Special Elite
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ba42ecf430cb0ff4794396267b3f47b4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
