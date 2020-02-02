@@ -69,7 +69,7 @@ public class PositionSelectorDisplay : MonoBehaviour
         {
             if(players[i].present)
             {
-                Debug.Log("Player " + i + ": score - " + players[i].score + "   level - " + players[i].level);
+                //Debug.Log("Player " + i + ": score - " + players[i].score + "   level - " + players[i].level);
                 players[i].score = (players[i].score + scoreGrowthSpeed * Time.deltaTime > 100)? 100: players[i].score + scoreGrowthSpeed * Time.deltaTime;
                 if((int)(players[i].score / 25) > players[i].level)
                 {
