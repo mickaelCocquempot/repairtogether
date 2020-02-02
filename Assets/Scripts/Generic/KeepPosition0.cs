@@ -14,6 +14,7 @@ public class KeepPosition0 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.position;
+        if(target != null)
+            transform.position = target.position;
     }
 }

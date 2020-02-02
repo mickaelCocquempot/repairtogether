@@ -299,7 +299,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        TimerScore.GetComponent<Text>().text = GameManager.instance.time.ToString("F2");
+        TimerScore.GetComponent<Text>().text = (GameManager.instance.time - GameManager.instance.timeStart).ToString("F2");
     }
 
     private void ShowPlayerUI()

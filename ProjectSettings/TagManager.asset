@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - LaserPath
+  - Canvas
+  - Indication
+  - Object
   layers:
   - Default
   - TransparentFX

@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public Transform MainCamera;
     public UIManager uiManager;
 
-    private float timeStart = 0f;
+    public float timeStart = 0f;
     public float time = 0f;
     private float timeF = 0f;
 
@@ -70,7 +70,9 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         gameRunning = true;
-        //GameObject.Instantiate(levels[levelN]);
+        GameObject objInsta = GameObject.Instantiate(levels[levelN]);
+        obj = GameObject.FindGameObjectWithTag("Object").GetComponent<ObjectMotionController>();
+        indicationScript.GetComponent<KeepPosition0>().target = obj.transform;
 
         timeStart = Time.timeSinceLevelLoad + counter + 1f;
         uiManager.gameObject.SetActive(true);
@@ -155,6 +157,9 @@ public class GameManager : MonoBehaviour
 
     private void inputActions()
     {
+        if (obj == null)
+            return;
+        
         obj.velocity = Vector3.zero;
         obj.rotation = Vector3.zero;
         foreach (IUsersInput user in users)
@@ -196,16 +201,19 @@ public class GameManager : MonoBehaviour
             if(time - timeStart >= 0f)
             {
                 inputActions();
-                actionChooser.chooseAction(time, users, gameMode, obj);
-                endCondition.update(obj);
-                if (endCondition.isFinished(obj))
+                if(obj != null)
                 {
-                    gameRunning = false;
-                    gameFinished = true;
-                    foreach (IUsersInput user in users)
+                    actionChooser.chooseAction(time, users, gameMode, obj);
+                    endCondition.update(obj);
+                    if (endCondition.isFinished(obj))
                     {
-                        user.action.actionNull(user, obj);
-                        user.action = null;
+                        gameRunning = false;
+                        gameFinished = true;
+                        foreach (IUsersInput user in users)
+                        {
+                            user.action.actionNull(user, obj);
+                            user.action = null;
+                        }
                     }
                 }
             }
