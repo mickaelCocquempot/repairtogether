@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,13 +38,44 @@ public class GameManager : MonoBehaviour
     public IndicationScript indicationScript;
     public Transform CameraWorkBench;
     public Transform MainCamera;
+    public UIManager uiManager;
 
+    private float timeStart = 0f;
     public float time = 0f;
     private float timeF = 0f;
 
     public bool gameRunning = true;
     public bool gameFinished = false;
 
+    public float counter = 3f;
+
+    public List<GameObject> levels;
+    public int levelN = 0;
+
+    private bool sceneLoaded = false;
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "WorkPlace")
+        {
+            objCam = Camera.main.GetComponent<CameraMotionController>();
+            indicationScript = GameObject.FindGameObjectWithTag("Indication").GetComponent<IndicationScript>();
+            uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
+            uiManager.gameObject.SetActive(false);
+            startGame();
+        }
+        
+    }
+
+    public void startGame()
+    {
+        gameRunning = true;
+        //GameObject.Instantiate(levels[levelN]);
+
+        timeStart = Time.timeSinceLevelLoad + counter + 1f;
+        uiManager.gameObject.SetActive(true);
+        uiManager.Timer = counter;
+    }
     public void testLevel()
     {
         level = new LevelManager.Level1(indicationScript);
@@ -117,6 +149,8 @@ public class GameManager : MonoBehaviour
             users.Add(new IUsersInput());
             users[i].action = level.actionsCollab[0];
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void inputActions()
@@ -155,20 +189,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         time = Time.timeSinceLevelLoad;
         if (gameRunning)
         {
-            inputActions();
-            actionChooser.chooseAction(time, users, gameMode, obj);
-            endCondition.update(obj);
-            if (endCondition.isFinished(obj))
+            if(time - timeStart >= 0f)
             {
-                gameRunning = false;
-                gameFinished = true;
-                foreach (IUsersInput user in users)
+                inputActions();
+                actionChooser.chooseAction(time, users, gameMode, obj);
+                endCondition.update(obj);
+                if (endCondition.isFinished(obj))
                 {
-                    user.action.actionNull(user, obj);
-                    user.action = null;
+                    gameRunning = false;
+                    gameFinished = true;
+                    foreach (IUsersInput user in users)
+                    {
+                        user.action.actionNull(user, obj);
+                        user.action = null;
+                    }
                 }
             }
         }

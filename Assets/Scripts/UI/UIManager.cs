@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
     private List<GameObject> mListButton = new List<GameObject>();
     
     [SerializeField]
-    private float Timer;
+    public float Timer;
 
     private Dictionary<string, Sprite> mDictionnaryIcon = new Dictionary<string, Sprite>();
 

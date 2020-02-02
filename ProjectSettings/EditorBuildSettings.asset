@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorkPlace.unity
     guid: ff8ccc7f6ad2493419ca1c123204b87a
+  - enabled: 1
+    path: Assets/Scenes/MenuRoles.unity
+    guid: 2b90af361acf2c34ead450460e4a0991
   m_configObjects: {}
