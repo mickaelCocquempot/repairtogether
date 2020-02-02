@@ -49,7 +49,7 @@ namespace EndCondition
         }
         public override bool isFinished(ObjectMotionController obj)
         {
-            return Vector3.Distance(targetTransform.position, obj.transform.position) < 0.3f && Quaternion.Angle(targetTransform.rotation, obj.transform.rotation) < 5f;
+            return Vector3.Distance(targetTransform.position, obj.transform.position) < 1.0f && Quaternion.Angle(targetTransform.rotation, obj.transform.rotation) < 10f;
         }
 
         public override void end(ObjectMotionController obj, float time)
