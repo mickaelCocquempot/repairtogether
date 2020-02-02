@@ -12,12 +12,14 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableLeftRight(input);
+            if(indicationScript != null)
+                indicationScript.disableLeftRight(input);
             obj.velocity.x = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.enableLeftRight(input, input.GetHorizontal());
+            if (indicationScript != null)
+                indicationScript.enableLeftRight(input, input.GetHorizontal());
             obj.velocity.x += input.GetHorizontal() * input.speed;
         }
     }
@@ -30,12 +32,14 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableUpDown(input);
+            if (indicationScript != null)
+                indicationScript.disableUpDown(input);
             obj.velocity.y = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.enableUpDown(input, -input.GetVertical());
+            if (indicationScript != null)
+                indicationScript.enableUpDown(input, -input.GetVertical());
             obj.velocity.y += -input.GetVertical() * input.speed;
         }
     }
@@ -48,12 +52,14 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableFrontBack(input);
+            if (indicationScript != null)
+                indicationScript.disableFrontBack(input);
             obj.velocity.z = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.enableFrontBack(input, -input.GetVertical());
+            if (indicationScript != null)
+                indicationScript.enableFrontBack(input, -input.GetVertical());
             obj.velocity.z += -input.GetVertical() * input.speed;
         }
     }
@@ -67,12 +73,14 @@ namespace Actions
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
 
-            indicationScript.disableOrX(input);
+            if (indicationScript != null)
+                indicationScript.disableOrX(input);
             obj.rotation.x = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.enableOrX(input, input.GetVertical() * input.speed);
+            if (indicationScript != null)
+                indicationScript.enableOrX(input, input.GetVertical() * input.speed);
             obj.rotation.x += input.GetVertical() * input.speed;
         }
     }
@@ -85,12 +93,14 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableOrY(input);
+            if (indicationScript != null)
+                indicationScript.disableOrY(input);
             obj.rotation.z = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.enableOrY(input, input.GetVertical() * input.speed);
+            if (indicationScript != null)
+                indicationScript.enableOrY(input, input.GetVertical() * input.speed);
             obj.rotation.z += input.GetVertical() * input.speed; 
         }
     }
@@ -155,13 +165,15 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableLeftRight(input);
+            if (indicationScript != null)
+                indicationScript.disableLeftRight(input);
             obj.velocity.x = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
             float dvv = dv(input);
-            indicationScript.enableLeftRight(input, dvv);
+            if (indicationScript != null)
+                indicationScript.enableLeftRight(input, dvv);
             obj.velocity.x += dvv;
         }
     }
@@ -173,13 +185,15 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableUpDown(input);
+            if (indicationScript != null)
+                indicationScript.disableUpDown(input);
             obj.velocity.y = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
             float dvv = dv(input);
-            indicationScript.enableUpDown(input, dvv);
+            if (indicationScript != null)
+                indicationScript.enableUpDown(input, dvv);
             obj.velocity.y += dvv;
         }
     }
@@ -191,13 +205,15 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableOrX(input);
+            if (indicationScript != null)
+                indicationScript.disableOrX(input);
             obj.rotation.x = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
             float dvv = dv(input);
-            indicationScript.enableOrX(input, dvv);
+            if (indicationScript != null)
+                indicationScript.enableOrX(input, dvv);
             obj.rotation.x += dvv;
         }
     }
@@ -209,13 +225,15 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableOrY(input);
+            if (indicationScript != null)
+                indicationScript.disableOrY(input);
             obj.rotation.z = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
             float dvv = dv(input);
-            indicationScript.enableOrY(input, dvv);
+            if (indicationScript != null)
+                indicationScript.enableOrY(input, dvv);
             obj.rotation.z += dvv;
         }
     }
@@ -227,13 +245,15 @@ namespace Actions
         }
         public override void actionNull(IUsersInput input, ObjectMotionController obj)
         {
-            indicationScript.disableFrontBack(input);
+            if (indicationScript != null)
+                indicationScript.disableFrontBack(input);
             //obj.velocity.z = 0;
         }
         public override void action(IUsersInput input, ObjectMotionController obj)
         {
             float dvv = dv(input);
-            indicationScript.enableFrontBack(input, dvv);
+            if (indicationScript != null)
+                indicationScript.enableFrontBack(input, dvv);
             obj.velocity.z += dvv;
         }
     }
