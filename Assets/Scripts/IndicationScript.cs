@@ -12,18 +12,25 @@ public class IndicationScript : MonoBehaviour
     public List<SpriteRenderer> Down = new List<SpriteRenderer>();
     public List<SpriteRenderer> OrX = new List<SpriteRenderer>();
     public List<SpriteRenderer> OrY = new List<SpriteRenderer>();
+
+    public float dist = 1f;
     // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i < 4; i++)
         {
-            Debug.Log(GameManager.instance.users[i].color);
             Left[i].color = GameManager.instance.users[i].color;
+            Left[i].transform.parent.position = new Vector3(dist,0f,0f);
             Right[i].color = GameManager.instance.users[i].color;
+            Right[i].transform.parent.position = new Vector3(-dist, 0f, 0f);
             Front[i].color = GameManager.instance.users[i].color;
+            Front[i].transform.parent.position = new Vector3(0f,0f,-dist);
             Back[i].color = GameManager.instance.users[i].color;
+            Back[i].transform.parent.position = new Vector3(0f, 0f, dist);
             Up[i].color = GameManager.instance.users[i].color;
+            Up[i].transform.parent.position = new Vector3(0f, dist, 0f);
             Down[i].color = GameManager.instance.users[i].color;
+            Down[i].transform.parent.position = new Vector3(0f, -dist, 0f);
             OrX[i].color = GameManager.instance.users[i].color;
             OrY[i].color = GameManager.instance.users[i].color;
         }
@@ -31,9 +38,9 @@ public class IndicationScript : MonoBehaviour
 
     public void enableLeftRight(IUsersInput input, float v)
     {
-        if (v > 0.05f)
+        if (v > 0.02f)
             Left[input.nActual - 1].enabled = true;
-        else if(v < -0.05f)
+        else if(v < -0.02f)
             Right[input.nActual - 1].enabled = true;
         else
         {
@@ -50,9 +57,9 @@ public class IndicationScript : MonoBehaviour
 
     public void enableUpDown(IUsersInput input, float v)
     {
-        if (v > 0.05f)
+        if (v > 0.02f)
             Up[input.nActual - 1].enabled = true;
-        else if (v < -0.05f)
+        else if (v < -0.02f)
             Down[input.nActual - 1].enabled = true;
         else
         {
@@ -69,10 +76,10 @@ public class IndicationScript : MonoBehaviour
 
     public void enableFrontBack(IUsersInput input, float v)
     {
-        if (v > 0.05f)
-            Front[input.nActual - 1].enabled = true;
-        else if (v < -0.05f)
+        if (v > 0.02f)
             Back[input.nActual - 1].enabled = true;
+        else if (v < -0.02f)
+            Front[input.nActual - 1].enabled = true;
         else
         {
             Front[input.nActual - 1].enabled = false;
@@ -88,8 +95,10 @@ public class IndicationScript : MonoBehaviour
 
     public void enableOrX(IUsersInput input, float v)
     {
-        if(Mathf.Abs(v) > 0.05f)
+        if(Mathf.Abs(v) > 0.02f)
             OrX[input.nActual - 1].enabled = true;
+        else
+            OrX[input.nActual - 1].enabled = false;
     }
 
     public void disableOrX(IUsersInput input)
@@ -99,8 +108,10 @@ public class IndicationScript : MonoBehaviour
 
     public void enableOrY(IUsersInput input, float v)
     {
-        if (Mathf.Abs(v) > 0.05f)
+        if (Mathf.Abs(v) > 0.02f)
             OrY[input.nActual - 1].enabled = true;
+        else
+            OrY[input.nActual - 1].enabled = false;
     }
 
     public void disableOrY(IUsersInput input)
