@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 3
   condition: 0
-  chooser: 0
+  chooser: 1
   targetTransform: {fileID: 0}
   usersN: 2
   obj: {fileID: 0}
@@ -2654,9 +2654,17 @@ MonoBehaviour:
   indicationScript: {fileID: 0}
   CameraWorkBench: {fileID: 0}
   MainCamera: {fileID: 0}
+  uiManager: {fileID: 0}
+  timeStart: 0
   time: 0
   gameRunning: 0
   gameFinished: 0
+  counter: 3
+  levels:
+  - {fileID: 6385105256194170445, guid: 2c6d223dee9844835a2bbc8be24717f7, type: 3}
+  Targets:
+  - {fileID: 7487077102265076675, guid: f5480b4aa4b954e41bef46c2961eda3f, type: 3}
+  levelN: 0
 --- !u!4 &733446012
 Transform:
   m_ObjectHideFlags: 0

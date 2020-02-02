@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     public float counter = 3f;
 
     public List<GameObject> levels;
+    public List<GameObject> Targets;
     public int levelN = 0;
 
     private bool sceneLoaded = false;
@@ -71,12 +72,17 @@ public class GameManager : MonoBehaviour
     {
         gameRunning = true;
         GameObject objInsta = GameObject.Instantiate(levels[levelN]);
+        GameObject targetTransformG = GameObject.Instantiate(Targets[levelN]);
+        targetTransform = targetTransformG.transform;
         obj = GameObject.FindGameObjectWithTag("Object").GetComponent<ObjectMotionController>();
         indicationScript.GetComponent<KeepPosition0>().target = obj.transform;
+        objCam.CenterGameOject = obj.gameObject;
 
         timeStart = Time.timeSinceLevelLoad + counter + 1f;
         uiManager.gameObject.SetActive(true);
         uiManager.Timer = counter;
+
+        testLevel();
     }
     public void testLevel()
     {

@@ -6,7 +6,7 @@ public class CameraMotionController : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject CenterGameOject;
+    public GameObject CenterGameOject;
     [SerializeField]
     private float Speed;
 
@@ -26,6 +26,8 @@ public class CameraMotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CenterGameOject == null)
+            return;
         mCenter = CenterGameOject.transform.position;
         transform.LookAt(CenterGameOject.transform);
 
