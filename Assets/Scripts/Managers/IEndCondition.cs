@@ -54,7 +54,7 @@ namespace EndCondition
 
         public override void end(ObjectMotionController obj, float time)
         {
-            obj.GetComponent<Collider>().enabled = false;
+            obj.GetComponentInChildren<Collider>().enabled = false;
             obj.transform.position = Vector3.Lerp(obj.transform.position, targetTransform.position, time / 10.0f);
             obj.transform.rotation = Quaternion.Lerp(obj.transform.rotation, targetTransform.rotation, time / 10.0f);
         }

@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         if(scene.name == "WorkPlace")
         {
             objCam = Camera.main.GetComponent<CameraMotionController>();
-            canvas = GameObject.Instantiate(canvasPrefab);
+            //canvas = GameObject.Instantiate(canvasPrefab);
             indicationScript = GameObject.FindGameObjectWithTag("Indication").GetComponent<IndicationScript>();
             uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
             uiManager.gameObject.SetActive(false);
@@ -75,9 +75,11 @@ public class GameManager : MonoBehaviour
     public void killGame()
     {
         GameObject.Destroy(prefab);
-        GameObject.Destroy(canvas);
-        canvas = null;
-        uiManager.gameObject.SetActive(false);
+        GameObject.Destroy(UIManager.instance.gameObject);
+        UIManager.instance = null;
+        //GameObject.Destroy(canvas);
+        //canvas = null;
+        //uiManager.gameObject.SetActive(false);
         prefab = null;
         gameFinished = false;
         gameRunning = false;
@@ -87,8 +89,10 @@ public class GameManager : MonoBehaviour
     {
         gameRunning = true;
         prefab = GameObject.Instantiate(levels[levelN]);
-        if(canvas == null)
+        /*if(canvas == null)
+        {
             canvas = GameObject.Instantiate(canvasPrefab);
+        }*/
         uiManager.gameObject.SetActive(false);
         uiManager.gameObject.SetActive(true);
         uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
@@ -102,6 +106,10 @@ public class GameManager : MonoBehaviour
         timeStart = Time.timeSinceLevelLoad + counter + 1f;
         uiManager.gameObject.SetActive(true);
         uiManager.Timer = counter;
+        for (int i = 0; i < usersN; ++i)
+        {
+            users[i].action = level.actionsCollab[0];
+        }
 
         testLevel();
     }
@@ -281,8 +289,10 @@ public class GameManager : MonoBehaviour
             if(timeF > 5f)
             {
                 levelN++;
+                //killGame();
+                //startGame();
                 killGame();
-                startGame();
+                SceneManager.LoadScene("WorkPlace");
             }
         }
     }

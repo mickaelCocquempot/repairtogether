@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
         
         OpaqueScreen.SetActive(true);
         Counter.SetActive(true);
-        Timer += 0.9F;
+        Timer += 2.0F;
         mListPlayer.Add(Player1);
         mListPlayer.Add(Player2);
         mListPlayer.Add(Player3);
@@ -307,6 +307,7 @@ public class UIManager : MonoBehaviour
        
         for (int i = 0; i < mNbPlayer; ++i)
         {
+            if(mListPlayer[i].transform.GetChild(1).GetComponent<Image>() != null && GameManager.instance.users[i].action != null)
             mListPlayer[i].transform.GetChild(1).GetComponent<Image>().sprite = mDictionnaryIcon[GameManager.instance.users[i].action.name];
         }
     }
