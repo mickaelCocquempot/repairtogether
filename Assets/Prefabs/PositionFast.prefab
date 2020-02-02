@@ -94,6 +94,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 420d562f2822f434d863d212141909c0, type: 3}
   - {fileID: 21300006, guid: 420d562f2822f434d863d212141909c0, type: 3}
   scoreGrowthSpeed: 10
+  speed: 1
 --- !u!1 &3935816753664419875
 GameObject:
   m_ObjectHideFlags: 0

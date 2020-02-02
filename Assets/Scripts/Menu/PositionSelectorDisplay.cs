@@ -19,6 +19,13 @@ public class PositionSelectorDisplay : MonoBehaviour
     public List<Sprite> spritesPlayer4;
 
     public int scoreGrowthSpeed;
+    public Speed speed;
+
+    public enum Speed
+    {
+        Slow,
+        Fast
+    }
 
     private struct Player
     {
