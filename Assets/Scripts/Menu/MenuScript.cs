@@ -43,14 +43,8 @@ public class MenuScript : MonoBehaviour
 	{
 		if (startGame)
 		{
-			this.fade += Time.deltaTime / this.fadeTime;
-			blackScreen.GetComponent<CanvasGroup>().alpha = 1.0f + this.fade;
-			audioSource.GetComponent<AudioSource>().volume = 1.0f - (1.0f + this.fade);
-			if (this.fade > 0.0f)
-			{
-				GameManager.instance.usersN = players;
-				SceneManager.LoadScene("WorkPlace");
-			}
+			GameManager.instance.usersN = players;
+			SceneManager.LoadScene("MenuRoles");
 			return;
 		}
 
