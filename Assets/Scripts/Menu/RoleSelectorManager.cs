@@ -21,56 +21,72 @@ public class RoleSelectorManager : MonoBehaviour
     {
         for (int i = 0; i < GameManager.instance.usersN; i++)
         {
-            if(GameManager.instance.users[i].GetHorizontal() > 0.2f)
+            if (GameManager.instance.users[i].GetHorizontal() > 0.2f)
             {
-                if(positions[0].isPlayerPresent(i))
+                if (positions[0].isPlayerPresent(i))
                 {
-                    positions[0].removePlayer(i);
-                    positions[1].addPlayer(i);
+                    if (positions[1].addPlayer(i))
+                    {
+                        positions[0].removePlayer(i);
+                    }
                 }
-                else if(positions[2].isPlayerPresent(i))
+                else if (positions[2].isPlayerPresent(i))
                 {
-                    positions[2].removePlayer(i);
-                    positions[3].addPlayer(i);
+                    if (positions[3].addPlayer(i))
+                    {
+                        positions[2].removePlayer(i);
+                    }
                 }
             }
             else if (GameManager.instance.users[i].GetHorizontal() < -0.2f)
             {
                 if (positions[1].isPlayerPresent(i))
                 {
-                    positions[1].removePlayer(i);
-                    positions[0].addPlayer(i);
+                    if (positions[0].addPlayer(i))
+                    {
+                        positions[1].removePlayer(i);
+                    }
                 }
                 else if (positions[3].isPlayerPresent(i))
                 {
-                    positions[3].removePlayer(i);
-                    positions[2].addPlayer(i);
-                }
-            }
-            else if (GameManager.instance.users[i].GetVertical() > 0.2f)
-            {
-                if (positions[2].isPlayerPresent(i))
-                {
-                    positions[2].removePlayer(i);
-                    positions[0].addPlayer(i);
-                }
-                else if (positions[3].isPlayerPresent(i))
-                {
-                    positions[3].removePlayer(i);
-                    positions[1].addPlayer(i);
+                    if (positions[2].addPlayer(i))
+                    {
+                        positions[3].removePlayer(i);
+                    }
                 }
             }
             else if (GameManager.instance.users[i].GetVertical() < -0.2f)
             {
+                if (positions[2].isPlayerPresent(i))
+                {
+                    if (positions[0].addPlayer(i))
+                    {
+                        positions[2].removePlayer(i);
+                    }
+                }
+                else if (positions[3].isPlayerPresent(i))
+                {
+                    if (positions[1].addPlayer(i))
+                    {
+                        positions[3].removePlayer(i);
+                    }
+                }
+            }
+            else if (GameManager.instance.users[i].GetVertical() > 0.2f)
+            {
                 if (positions[0].isPlayerPresent(i))
                 {
-                    positions[0].removePlayer(i);
-                    positions[2].addPlayer(i);
+                    if (positions[2].addPlayer(i))
+                    {
+                        positions[0].removePlayer(i);
+                    }
                 }
                 else if (positions[1].isPlayerPresent(i))
                 {
-                    positions[1].removePlayer(i);
-                    positions[3].addPlayer(i);
+                    if (positions[3].addPlayer(i))
+                    {
+                        positions[1].removePlayer(i);
+                    }
                 }
             }
         }

@@ -46,7 +46,7 @@ public class PositionSelectorDisplay : MonoBehaviour
     private int result;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         status.SetActive(true);
         status_icon.SetActive(false);
