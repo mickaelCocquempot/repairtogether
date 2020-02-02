@@ -3028,9 +3028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ef9c89d3303477486770a9dc78946e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 3
+  mode: 2
   condition: 0
-  chooser: 1
+  chooser: 0
   targetTransform: {fileID: 2033114502}
   usersN: 4
   obj: {fileID: 805985518}
