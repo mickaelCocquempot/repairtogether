@@ -12,6 +12,7 @@ public class IndicationScript : MonoBehaviour
     public List<SpriteRenderer> Down = new List<SpriteRenderer>();
     public List<SpriteRenderer> OrX = new List<SpriteRenderer>();
     public List<SpriteRenderer> OrY = new List<SpriteRenderer>();
+    public List<SpriteRenderer> OrZ = new List<SpriteRenderer>();
 
     public float dist = 1f;
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class IndicationScript : MonoBehaviour
             Down[i].transform.parent.position = new Vector3(0f, -dist, 0f);
             OrX[i].color = GameManager.instance.users[i].color;
             OrY[i].color = GameManager.instance.users[i].color;
+            OrZ[i].color = GameManager.instance.users[i].color;
         }
     }
 
@@ -117,6 +119,19 @@ public class IndicationScript : MonoBehaviour
     public void disableOrY(IUsersInput input)
     {
         OrY[input.nActual - 1].enabled = false;
+    }
+
+    public void enableOrZ(IUsersInput input, float v)
+    {
+        if (Mathf.Abs(v) > 0.02f)
+            OrZ[input.nActual - 1].enabled = true;
+        else
+            OrZ[input.nActual - 1].enabled = false;
+    }
+
+    public void disableOrZ(IUsersInput input)
+    {
+        OrZ[input.nActual - 1].enabled = false;
     }
 
     // Update is called once per frame

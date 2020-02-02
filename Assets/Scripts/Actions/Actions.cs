@@ -239,6 +239,26 @@ namespace Actions
         }
     }
 
+    public class OrientationZAngleAction : AngleAction
+    {
+        public OrientationZAngleAction(IndicationScript indication) : base(indication, "OrientationZAngle")
+        {
+        }
+        public override void actionNull(IUsersInput input, ObjectMotionController obj)
+        {
+            if (indicationScript != null)
+                indicationScript.disableOrZ(input);
+            obj.rotation.y = 0;
+        }
+        public override void action(IUsersInput input, ObjectMotionController obj)
+        {
+            float dvv = dv(input);
+            if (indicationScript != null)
+                indicationScript.enableOrZ(input, dvv);
+            obj.rotation.y += dvv;
+        }
+    }
+
     public class DepthAngleAction : AngleAction
     {
         public DepthAngleAction(IndicationScript indication) : base(indication, "DepthAngle")
