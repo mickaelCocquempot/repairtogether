@@ -207,6 +207,24 @@ public class GameManager : MonoBehaviour
     {
         if (obj == null)
             return;
+
+        if(SystemInfo.operatingSystemFamily== OperatingSystemFamily.MacOSX)
+        {
+            if (Input.GetButtonDown("START_MAC"))
+            {
+                killGame();
+                SceneManager.LoadScene("Menu");
+            }
+        }
+        else
+        {
+
+            if (Input.GetButtonDown("START_MS"))
+            {
+                killGame();
+                SceneManager.LoadScene("Menu");
+            }
+        }
         
         obj.velocity = Vector3.zero;
         obj.rotation = Vector3.zero;
