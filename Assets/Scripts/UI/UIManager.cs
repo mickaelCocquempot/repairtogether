@@ -91,8 +91,7 @@ public class UIManager : MonoBehaviour
         mDictionnaryIcon.Add("Camera", ListIcon[5]);
         mDictionnaryIcon.Add("DepthAngle", ListIcon[0]);
         mDictionnaryIcon.Add("OrientationZAngle", ListIcon[6]);
-
-
+           
 
         for (int i = 0; i < GameManager.instance.usersN; ++i)
         {
@@ -101,11 +100,12 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.instance.gameMode.MODE == GameMode.GAMEMODE.G4COLLABSTACK)
         {
+            
             Debug.Log("1");
             for (int i = 0; i < GameManager.instance.usersN; ++i)
             {
                 Debug.Log("2");
-                mListPlayer[i].GetComponentInChildren<Image>().color = GameManager.instance.users[i].color;
+                //mListPlayer[i].GetComponentInChildren<Image>().color = GameManager.instance.users[i].color;
 
                 //Debug.Log("COLOR : " + GameManager.instance.users[i].color.ToString());
                 for (int j = 0; j < ((GameMode.GCollabStack)GameManager.instance.gameMode).nbAction; j++)
@@ -197,6 +197,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShowPlayerUI();
         if (!mCounterDone)
             Timer -= Time.deltaTime;
 
@@ -215,8 +216,7 @@ public class UIManager : MonoBehaviour
                 mListPlayer[i].SetActive(true);
         }
 
-        if(GameManager.instance.gameMode.MODE == GameMode.GAMEMODE.G4COLLAB)
-            ShowPlayerUI();
+
         if (GameManager.instance.gameMode.MODE == GameMode.GAMEMODE.G4COLLABSTACK)
         {
             for (int i = 0; i < GameManager.instance.usersN; ++i)
@@ -304,11 +304,10 @@ public class UIManager : MonoBehaviour
 
     private void ShowPlayerUI()
     {
+       
         for (int i = 0; i < mNbPlayer; ++i)
         {
-            int lIndice = i;
-            lIndice++;
-            mListPlayer[i].GetComponent<Text>().text = "Player" + lIndice + " " + GameManager.instance.users[i].action.name;
+            mListPlayer[i].transform.GetChild(1).GetComponent<Image>().sprite = mDictionnaryIcon[GameManager.instance.users[i].action.name];
         }
     }
 
